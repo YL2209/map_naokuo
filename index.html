@@ -7,15 +7,14 @@
     <meta name="description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位，可分享坐标给好友。">
     <meta name="keywords" content="坐标拾取,打卡,围栏,地图,经纬度,GPS,位置分享">
 
-    <!-- 网站图标（仍然可以用SVG作为浏览器标签图标，但分享图必须用PNG） -->
+    <!-- 网站图标（建议保留 SVG 用于浏览器标签，分享图用 PNG） -->
     <link rel="icon" href="https://map.naokuo.top/static/logo/map.svg" type="image/svg+xml">
 
-    <!-- Open Graph / Facebook / QQ / 微信 -->
+    <!-- Open Graph / Facebook / QQ / 微信（所有标签均指向主页，不再动态修改） -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://map.naokuo.top/">
     <meta property="og:title" content="坐标拾取 & 打卡范围预览">
     <meta property="og:description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位，一键分享坐标给好友。">
-    <!-- 👇 已改为PNG，并添加了类型声明 -->
     <meta property="og:image" content="https://map.naokuo.top/static/logo/map.png">
     <meta property="og:image:width" content="200">
     <meta property="og:image:height" content="200">
@@ -29,7 +28,7 @@
     <meta name="twitter:description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位。">
     <meta name="twitter:image" content="https://map.naokuo.top/static/logo/map.png">
 
-    <!-- QQ 分享 (itemprop) -->
+    <!-- QQ 分享 -->
     <meta itemprop="name" content="坐标拾取 & 打卡范围预览">
     <meta itemprop="description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位，一键分享坐标。">
     <meta itemprop="image" content="https://map.naokuo.top/static/logo/map.png">
@@ -477,7 +476,6 @@
         .btn-warn { background: var(--bg-card); border: 1.5px solid rgba(212, 136, 6, 0.4); color: #d48806; flex: 1; }
         .btn:disabled { opacity: 0.45; pointer-events: none; }
 
-        /* 微信分享提示浮层 */
         .weixin-share-tip {
             position: fixed;
             top: 0;
@@ -499,9 +497,7 @@
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: auto;
         }
-        .weixin-share-tip.show {
-            transform: translateY(0);
-        }
+        .weixin-share-tip.show { transform: translateY(0); }
         .weixin-share-tip .close-tip {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -595,7 +591,6 @@
         .toast.warning { background: #ff8f1f; color: #fff; }
         .toast.info { background: #4d94ff; color: #fff; }
 
-        /* 源码链接样式 */
         .source-link-row {
             display: flex;
             justify-content: center;
@@ -621,12 +616,8 @@
         .source-link:hover { background: rgba(77, 148, 255, 0.18); border-color: var(--primary); color: #fff; }
         .source-link:active { transform: scale(0.96); background: rgba(77, 148, 255, 0.25); }
 
-        /* PC端 */
         @media (min-width: 768px) {
-            body {
-                padding: 24px;
-                align-items: center;
-            }
+            body { padding: 24px; align-items: center; }
             .app-container {
                 width: 90vw;
                 max-width: 100%;
@@ -730,14 +721,12 @@
 </head>
 <body>
 
-<!-- 微信分享提示浮层 -->
 <div class="weixin-share-tip" id="weixinShareTip">
     <span class="arrow-up">👆</span> 点击右上角 <strong>「…」</strong> 分享给朋友
     <button class="close-tip" id="closeWeixinTip" aria-label="关闭提示">✕</button>
 </div>
 
 <div class="app-container">
-    <!-- 移动端顶部（包含logo图标） -->
     <div class="header mobile-only-header">
         <span class="title">
             <img src="./static/logo/map.svg" class="icon" alt="地图logo" />
@@ -756,7 +745,6 @@
     </div>
 
     <div class="bottom-panel" id="bottomPanel">
-        <!-- PC端侧边栏标题（包含logo图标） -->
         <div class="panel-header pc-only-header" style="display: none;">
             <span class="pc-title">
                 <img src="./static/logo/map.svg" class="icon" alt="地图logo" />
@@ -830,7 +818,6 @@
             </ul>
         </div>
 
-        <!-- 源码获取链接 -->
         <div class="source-link-row">
             <a href="https://github.com/YL2209/map_naokuo.git" target="_blank" rel="noopener noreferrer" class="source-link">
                 <span>📂</span> 获取源码
@@ -847,16 +834,10 @@
         const STORAGE_KEY = 'fence_app_full_state';
         const API_KEY = 'C4MBZ-RM5OH-CNUD2-WAI5F-M3FG5-SNB7G';
 
-        // 设置分享预览logo
-        function setShareLogo() {
-            const logoUrl = window.location.origin + '/static/logo/map.svg';
-            setMetaContent('og:image', logoUrl);
-            setMetaContent('twitter:image', logoUrl);
-            setMetaContent('itemprop', 'image', logoUrl);
-        }
-
-        function parseURLParams() {
-            const params = new URLSearchParams(window.location.search);
+        // 从 URL hash 中读取参数 (#lat=...&lng=...&radius=...)
+        function parseHashParams() {
+            const hash = window.location.hash.substring(1); // 去掉开头的 #
+            const params = new URLSearchParams(hash);
             return {
                 lat: params.get('lat') ? parseFloat(params.get('lat')) : null,
                 lng: params.get('lng') ? parseFloat(params.get('lng')) : null,
@@ -865,25 +846,28 @@
         }
 
         function loadState() {
-            const urlParams = parseURLParams();
+            const hashParams = parseHashParams();
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
                 if (raw) {
                     const saved = JSON.parse(raw);
                     return {
                         fenceCenter: {
-                            lat: urlParams.lat || (saved.fenceCenter ? saved.fenceCenter.lat : 31.239666),
-                            lng: urlParams.lng || (saved.fenceCenter ? saved.fenceCenter.lng : 121.499763),
+                            lat: hashParams.lat || (saved.fenceCenter ? saved.fenceCenter.lat : 31.239666),
+                            lng: hashParams.lng || (saved.fenceCenter ? saved.fenceCenter.lng : 121.499763),
                         },
-                        fenceRadius: urlParams.radius || saved.fenceRadius || 1000,
-                        userLatLng: urlParams.lat && urlParams.lng ? null : (saved.userLatLng || null),
+                        fenceRadius: hashParams.radius || saved.fenceRadius || 1000,
+                        userLatLng: hashParams.lat && hashParams.lng ? null : (saved.userLatLng || null),
                         records: Array.isArray(saved.records) ? saved.records.slice(0, 20) : [],
                     };
                 }
             } catch (e) {}
             return {
-                fenceCenter: { lat: urlParams.lat || 31.239666, lng: urlParams.lng || 121.499763 },
-                fenceRadius: urlParams.radius || 1000,
+                fenceCenter: {
+                    lat: hashParams.lat || 31.239666,
+                    lng: hashParams.lng || 121.499763,
+                },
+                fenceRadius: hashParams.radius || 1000,
                 userLatLng: null,
                 records: [],
             };
@@ -901,39 +885,21 @@
             } catch (e) {}
         }
 
-        function updateBrowserURL() {
+        // 更新浏览器 hash（不刷新页面）
+        function updateBrowserHash() {
             const params = new URLSearchParams();
             params.set('lat', fmtCoord(state.fenceCenter.lat, 6));
             params.set('lng', fmtCoord(state.fenceCenter.lng, 6));
             params.set('radius', state.fenceRadius.toString());
-            const newURL = window.location.origin + window.location.pathname + '?' + params.toString();
-            try { window.history.replaceState({}, '', newURL); } catch (e) {}
-            updateOGTags();
-        }
-
-        function updateOGTags() {
-            const shareURL = window.location.origin + window.location.pathname + '?' +
-                new URLSearchParams({ lat: fmtCoord(state.fenceCenter.lat,6), lng: fmtCoord(state.fenceCenter.lng,6), radius: state.fenceRadius.toString() }).toString();
-            const ogTitle = `围栏坐标: ${fmtCoord(state.fenceCenter.lat,4)},${fmtCoord(state.fenceCenter.lng,4)} | 半径${state.fenceRadius}m`;
-            setMetaContent('og:url', shareURL);
-            setMetaContent('og:title', ogTitle);
-            setMetaContent('twitter:title', ogTitle);
-            setMetaContent('twitter:url', shareURL);
-            setMetaContent('itemprop', 'name', ogTitle);
-            setShareLogo(); // 确保logo始终存在
-        }
-
-        function setMetaContent(attrName, attrValue, content) {
-            let selector;
-            if (content === undefined) {
-                content = attrValue;
-                selector = `meta[property="${attrName}"], meta[name="${attrName}"]`;
-            } else {
-                selector = `meta[${attrName}="${attrValue}"]`;
+            const newHash = '#' + params.toString();
+            if (window.location.hash !== newHash) {
+                try {
+                    window.history.replaceState({}, '', window.location.pathname + window.location.search + newHash);
+                } catch (e) {}
             }
-            const el = document.querySelector(selector);
-            if (el) el.setAttribute('content', content);
         }
+
+        // 不再动态修改 OG 标签，所有分享信息已在静态 meta 中定义
 
         const saved = loadState();
         const state = {
@@ -1157,7 +1123,7 @@
                 const result = checkInside(state.userLatLng.lat, state.userLatLng.lng);
                 state.isInside = result.inside; updateUserMarker(); updateFenceLayer(); updateDistanceUI(result.distance);
             } else { updateDistanceUI(null); }
-            updateFenceInputs(); updateBrowserURL(); saveState();
+            updateFenceInputs(); updateBrowserHash(); saveState();
         }
 
         function setUserPos(lat, lng) {
@@ -1169,7 +1135,7 @@
             const d = calcDistance(lat, lng, state.fenceCenter.lat, state.fenceCenter.lng);
             let zoom = 15; if (d>1000) zoom=13; if (d>3000) zoom=11; if (d>8000) zoom=9;
             map.setCenter(new TMap.LatLng(midLat, midLng)); map.setZoom(zoom);
-            updateBrowserURL(); saveState();
+            updateBrowserHash(); saveState();
         }
 
         function clearUserPos() {
@@ -1177,7 +1143,7 @@
             updateUserMarker(); updateFenceLayer(); updateAllUI(null);
             map.setCenter(new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng)); map.setZoom(15);
             mapTip.classList.remove('hidden');
-            updateBrowserURL(); saveState();
+            updateBrowserHash(); saveState();
         }
 
         function pickCoordinate(lat, lng) {
@@ -1326,16 +1292,19 @@
                 const result = checkInside(lat, lng); state.isInside = result.inside;
                 updateUserMarker(); updateFenceLayer(); updateDistanceUI(result.distance); updateStatusUI(); renderRecords();
             }
-            const urlParams = parseURLParams();
-            if (urlParams.lat && urlParams.lng) {
-                map.setCenter(new TMap.LatLng(urlParams.lat, urlParams.lng));
-                map.setZoom(urlParams.radius ? (urlParams.radius < 500 ? 15 : (urlParams.radius < 2000 ? 14 : 12)) : 15);
-                mapTip.classList.add('hidden'); state.pickedCoord = { lat: urlParams.lat, lng: urlParams.lng };
+            // 如果 hash 中有坐标，自动定位到围栏中心
+            const hashParams = parseHashParams();
+            if (hashParams.lat && hashParams.lng) {
+                map.setCenter(new TMap.LatLng(hashParams.lat, hashParams.lng));
+                const z = hashParams.radius ? (hashParams.radius < 500 ? 15 : (hashParams.radius < 2000 ? 14 : 12)) : 15;
+                map.setZoom(z);
+                mapTip.classList.add('hidden');
+                state.pickedCoord = { lat: hashParams.lat, lng: hashParams.lng };
             }
             map.on('click', (evt) => { if(evt.latLng) { pickCoordinate(evt.latLng.getLat(), evt.latLng.getLng()); mapTip.classList.add('hidden'); } });
             map.on('longpress', (evt) => { if(evt.latLng) { pickCoordinate(evt.latLng.getLat(), evt.latLng.getLng()); mapTip.classList.add('hidden'); } });
             map.on('rightclick', (evt) => { if(evt.latLng) { pickCoordinate(evt.latLng.getLat(), evt.latLng.getLng()); mapTip.classList.add('hidden'); } });
-            updateAllUI(null); updateFenceInputs(); updateBrowserURL(); setShareLogo();
+            updateAllUI(null); updateFenceInputs(); updateBrowserHash();
             bindCrosshairFollow(); handleResponsiveHeader();
             window.addEventListener('resize', handleResponsiveHeader);
             showWeixinShareTip();
@@ -1369,7 +1338,7 @@
             r = Math.min(20000, Math.max(10, parseInt(r)||10)); state.fenceRadius = r;
             if (state.userLatLng) { const res = checkInside(state.userLatLng.lat, state.userLatLng.lng); state.isInside = res.inside; updateUserMarker(); updateFenceLayer(); updateAllUI(res.distance); }
             else { updateFenceLayer(); updateAllUI(null); }
-            updateBrowserURL(); saveState();
+            updateBrowserHash(); saveState();
         }
 
         function onFenceCenterInputChange() {
@@ -1390,7 +1359,6 @@
         });
 
         if (typeof TMap !== 'undefined') { initMap(); } else { $('container').innerHTML = '<div style="padding:40px;text-align:center;color:#ff4d4f;">⚠️ 腾讯地图API加载失败</div>'; }
-        console.log('分享logo已设置为：', window.location.origin + '/static/logo/map.svg');
     })();
 </script>
 </body>
