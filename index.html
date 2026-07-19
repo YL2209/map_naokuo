@@ -7,17 +7,18 @@
     <meta name="description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位，可分享坐标给好友。">
     <meta name="keywords" content="坐标拾取,打卡,围栏,地图,经纬度,GPS,位置分享">
 
-    <!-- 网站图标 -->
-    <link rel="icon" href="./static/logo/map.svg" type="image/svg+xml">
+    <!-- 网站图标 (改为绝对路径，建议使用PNG) -->
+    <link rel="icon" href="https://map.naokuo.top/static/logo/map.svg" type="image/svg+xml">
 
     <!-- Open Graph / Facebook / QQ / 微信 -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="https://map.naokuo.top/">
     <meta property="og:title" content="坐标拾取 & 打卡范围预览">
     <meta property="og:description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位，一键分享坐标给好友。">
-    <meta property="og:image" content="">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <!-- 请将下面的图片链接替换为你实际的Logo绝对路径，建议使用PNG -->
+    <meta property="og:image" content="https://map.naokuo.top/static/logo/map.svg">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
     <meta property="og:site_name" content="坐标拾取工具">
     <meta property="og:locale" content="zh_CN">
 
@@ -25,16 +26,17 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="坐标拾取 & 打卡范围预览">
     <meta name="twitter:description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位。">
-    <meta name="twitter:image" content="">
+    <meta name="twitter:image" content="https://map.naokuo.top/static/logo/map.svg">
 
     <!-- QQ 分享 (itemprop) -->
     <meta itemprop="name" content="坐标拾取 & 打卡范围预览">
     <meta itemprop="description" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位，一键分享坐标。">
-    <meta itemprop="image" content="">
+    <meta itemprop="image" content="https://map.naokuo.top/static/logo/map.svg">
 
-    <!-- 微信分享提示 (在微信中会用到og标签) -->
+    <!-- 微信分享提示 (在微信中会用到og标签，再补一个微信专用) -->
     <meta name="wechat:share_title" content="坐标拾取 & 打卡范围预览">
     <meta name="wechat:share_desc" content="精准地图坐标拾取工具，支持围栏范围预览、打卡模拟。">
+    <meta name="wechat:share_image" content="https://map.naokuo.top/static/logo/map.svg">
 
     <style>
         :root {
@@ -148,15 +150,9 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-        .inside .status-dot {
-            background: #00b578;
-        }
-        .outside .status-dot {
-            background: #ff4d4f;
-        }
-        .unknown .status-dot {
-            background: #d48806;
-        }
+        .inside .status-dot { background: #00b578; }
+        .outside .status-dot { background: #ff4d4f; }
+        .unknown .status-dot { background: #d48806; }
 
         .map-wrap {
             flex: 1;
@@ -267,12 +263,8 @@
             color: #ddd;
             transition: border-color 0.2s;
         }
-        .address-search input::placeholder {
-            color: #777;
-        }
-        .address-search input:focus {
-            border-color: var(--primary);
-        }
+        .address-search input::placeholder { color: #777; }
+        .address-search input:focus { border-color: var(--primary); }
         .address-search .btn-xs {
             padding: 8px 14px;
             border-radius: 14px;
@@ -289,15 +281,8 @@
             gap: 4px;
             color: #ccc;
         }
-        .address-search .btn-xs:active {
-            transform: scale(0.93);
-            background: #333;
-        }
-        .address-search .btn-xs.primary {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
+        .address-search .btn-xs:active { transform: scale(0.93); background: #333; }
+        .address-search .btn-xs.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
 
         .fence-settings {
             display: flex;
@@ -334,18 +319,13 @@
             font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
             padding: 2px 4px;
         }
-        .fence-settings .input-group input:focus {
-            color: var(--primary);
-        }
+        .fence-settings .input-group input:focus { color: var(--primary); }
 
         .copy-row {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
         }
-        .copy-btn,
-        .share-btn {
+        .copy-btn {
             padding: 7px 14px;
             border-radius: 14px;
             font-size: 12px;
@@ -361,20 +341,11 @@
             gap: 4px;
             color: #bbb;
         }
-        .copy-btn:active,
-        .share-btn:active {
-            transform: scale(0.93);
-            background: #333;
-        }
+        .copy-btn:active { transform: scale(0.93); background: #333; }
         .copy-btn.copied {
             background: rgba(0, 181, 120, 0.15);
             border-color: #00b578;
             color: #00b578;
-        }
-        .share-btn.shared {
-            background: rgba(77, 148, 255, 0.15);
-            border-color: #4d94ff;
-            color: #4d94ff;
         }
 
         .radius-row {
@@ -414,9 +385,7 @@
             box-shadow: 0 2px 8px rgba(77, 148, 255, 0.3);
             transition: transform 0.15s;
         }
-        .radius-row input[type="range"]::-webkit-slider-thumb:active {
-            transform: scale(1.15);
-        }
+        .radius-row input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.15); }
         .radius-input-wrap {
             display: flex;
             align-items: center;
@@ -469,15 +438,9 @@
             font-weight: 700;
             color: var(--text);
         }
-        .info-item.danger .val {
-            color: #ff4d4f;
-        }
-        .info-item.success .val {
-            color: #00b578;
-        }
-        .info-item.warning .val {
-            color: #d48806;
-        }
+        .info-item.danger .val { color: #ff4d4f; }
+        .info-item.success .val { color: #00b578; }
+        .info-item.warning .val { color: #d48806; }
 
         .btn-row {
             display: flex;
@@ -502,64 +465,16 @@
             -webkit-tap-highlight-color: transparent;
             white-space: nowrap;
         }
-        .btn:active {
-            transform: scale(0.94);
-        }
+        .btn:active { transform: scale(0.94); }
         .btn-primary {
             background: var(--primary);
             color: #fff;
             flex: 2;
             box-shadow: 0 4px 14px rgba(77, 148, 255, 0.35);
         }
-        .btn-outline {
-            background: var(--bg-card);
-            border: 1.5px solid #3a3a55;
-            color: #ccc;
-            flex: 1;
-        }
-        .btn-warn {
-            background: var(--bg-card);
-            border: 1.5px solid rgba(212, 136, 6, 0.4);
-            color: #d48806;
-            flex: 1;
-        }
-        .btn:disabled {
-            opacity: 0.45;
-            pointer-events: none;
-        }
-
-        /* 源码链接样式 */
-        .source-link-row {
-            display: flex;
-            justify-content: center;
-            margin-top: 4px;
-            padding: 6px 0 2px;
-            border-top: 1px solid var(--border);
-        }
-        .source-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            color: #8ab4f8;
-            text-decoration: none;
-            padding: 6px 14px;
-            border-radius: 14px;
-            background: rgba(77, 148, 255, 0.08);
-            border: 1px solid rgba(77, 148, 255, 0.25);
-            transition: all 0.2s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .source-link:hover {
-            background: rgba(77, 148, 255, 0.18);
-            border-color: var(--primary);
-            color: #fff;
-        }
-        .source-link:active {
-            transform: scale(0.96);
-            background: rgba(77, 148, 255, 0.25);
-        }
+        .btn-outline { background: var(--bg-card); border: 1.5px solid #3a3a55; color: #ccc; flex: 1; }
+        .btn-warn { background: var(--bg-card); border: 1.5px solid rgba(212, 136, 6, 0.4); color: #d48806; flex: 1; }
+        .btn:disabled { opacity: 0.45; pointer-events: none; }
 
         /* 微信分享提示浮层 */
         .weixin-share-tip {
@@ -603,22 +518,15 @@
             justify-content: center;
             transition: background 0.2s;
         }
-        .weixin-share-tip .close-tip:active {
-            background: rgba(255, 255, 255, 0.4);
-        }
+        .weixin-share-tip .close-tip:active { background: rgba(255, 255, 255, 0.4); }
         .weixin-share-tip .arrow-up {
             display: inline-block;
             font-size: 20px;
             animation: bounceUp 1.2s ease-in-out infinite;
         }
         @keyframes bounceUp {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-6px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         .records-panel {
@@ -648,17 +556,9 @@
             justify-content: space-between;
             border-bottom: 1px dashed #333;
         }
-        .records-list li:last-child {
-            border-bottom: none;
-        }
-        .record-success {
-            color: #00b578;
-            font-weight: 600;
-        }
-        .record-fail {
-            color: #ff4d4f;
-            font-weight: 600;
-        }
+        .records-list li:last-child { border-bottom: none; }
+        .record-success { color: #00b578; font-weight: 600; }
+        .record-fail { color: #ff4d4f; font-weight: 600; }
         .clear-records-btn {
             font-size: 10px;
             color: #888;
@@ -670,10 +570,7 @@
             transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
-        .clear-records-btn:hover {
-            border-color: #ff4d4f;
-            color: #ff4d4f;
-        }
+        .clear-records-btn:hover { border-color: #ff4d4f; color: #ff4d4f; }
 
         .toast {
             position: fixed;
@@ -691,139 +588,37 @@
             white-space: nowrap;
             letter-spacing: 0.3px;
         }
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-        .toast.success {
-            background: #00b578;
-            color: #fff;
-        }
-        .toast.fail {
-            background: #ff4d4f;
-            color: #fff;
-        }
-        .toast.warning {
-            background: #ff8f1f;
-            color: #fff;
-        }
-        .toast.info {
-            background: #4d94ff;
-            color: #fff;
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.success { background: #00b578; color: #fff; }
+        .toast.fail { background: #ff4d4f; color: #fff; }
+        .toast.warning { background: #ff8f1f; color: #fff; }
+        .toast.info { background: #4d94ff; color: #fff; }
 
-        /* 社交分享弹窗 */
-        .social-share-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 998;
+        /* 源码链接样式 */
+        .source-link-row {
             display: flex;
-            align-items: flex-end;
             justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            margin-top: 4px;
+            padding: 6px 0 2px;
+            border-top: 1px solid var(--border);
         }
-        .social-share-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .social-share-sheet {
-            background: #1e1e2e;
-            border-radius: 20px 20px 0 0;
-            width: 100%;
-            max-width: 500px;
-            padding: 20px 16px 28px;
-            transform: translateY(100%);
-            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #333;
-            border-bottom: none;
-        }
-        .social-share-overlay.active .social-share-sheet {
-            transform: translateY(0);
-        }
-        .social-share-sheet .sheet-title {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: #ddd;
-            margin-bottom: 16px;
-        }
-        .social-share-sheet .share-icons {
-            display: flex;
-            justify-content: space-around;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .social-share-sheet .share-icon-item {
-            display: flex;
-            flex-direction: column;
+        .source-link {
+            display: inline-flex;
             align-items: center;
             gap: 6px;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            padding: 8px 12px;
-            border-radius: 12px;
-            transition: background 0.2s;
-            border: none;
-            background: none;
-            color: #ccc;
-            font-size: 11px;
-            font-family: inherit;
-        }
-        .social-share-sheet .share-icon-item:active {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .social-share-sheet .share-icon-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        .share-icon-circle.qq {
-            background: #12b7f5;
-            color: #fff;
-        }
-        .share-icon-circle.wechat {
-            background: #07c160;
-            color: #fff;
-        }
-        .share-icon-circle.weibo {
-            background: #e6162d;
-            color: #fff;
-        }
-        .share-icon-circle.link {
-            background: #4d94ff;
-            color: #fff;
-        }
-        .social-share-sheet .cancel-btn {
-            display: block;
-            width: 100%;
-            margin-top: 16px;
-            padding: 12px;
-            border-radius: 24px;
-            border: 1.5px solid #444;
-            background: #252540;
-            color: #ccc;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8ab4f8;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 14px;
+            background: rgba(77, 148, 255, 0.08);
+            border: 1px solid rgba(77, 148, 255, 0.25);
             transition: all 0.2s;
-            text-align: center;
-            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
         }
-        .social-share-sheet .cancel-btn:active {
-            background: #333;
-            transform: scale(0.96);
-        }
+        .source-link:hover { background: rgba(77, 148, 255, 0.18); border-color: var(--primary); color: #fff; }
+        .source-link:active { transform: scale(0.96); background: rgba(77, 148, 255, 0.25); }
 
         /* PC端 */
         @media (min-width: 768px) {
@@ -841,9 +636,7 @@
                 border-radius: 24px;
                 margin: 0 auto;
             }
-            .header {
-                display: none;
-            }
+            .header { display: none; }
             .map-wrap {
                 flex: 1 1 auto;
                 min-width: 0;
@@ -887,1386 +680,717 @@
                 vertical-align: middle;
                 flex-shrink: 0;
             }
-            .panel-header .status-badge {
-                font-size: 13px;
-                padding: 6px 14px;
-            }
-            .address-search input {
-                font-size: 14px;
-                padding: 10px 14px;
-            }
-            .address-search .btn-xs {
-                font-size: 13px;
-                padding: 10px 16px;
-            }
-            .fence-settings .input-group {
-                padding: 8px 12px;
-            }
-            .fence-settings .input-group label {
-                font-size: 11px;
-            }
-            .fence-settings .input-group input {
-                font-size: 13px;
-            }
-            .copy-btn,
-            .share-btn {
-                font-size: 13px;
-                padding: 9px 16px;
-                border-radius: 16px;
-            }
-            .radius-row {
-                padding: 10px 14px;
-                gap: 12px;
-            }
-            .radius-row label {
-                font-size: 12px;
-            }
-            .radius-row input[type="range"] {
-                height: 8px;
-            }
-            .radius-row input[type="range"]::-webkit-slider-thumb {
-                width: 28px;
-                height: 28px;
-            }
-            .radius-input-wrap {
-                width: 100px;
-                padding: 6px 10px;
-            }
-            .radius-input-wrap input {
-                font-size: 16px;
-            }
-            .info-item {
-                padding: 12px 14px;
-            }
-            .info-item .val {
-                font-size: 22px;
-            }
-            .btn {
-                padding: 13px 16px;
-                font-size: 14px;
-                border-radius: 24px;
-            }
-            .records-panel {
-                margin-top: 10px;
-                border-top: 1px solid #333;
-                padding-top: 12px;
-            }
-            .records-title {
-                font-size: 14px;
-            }
-            .records-list {
-                max-height: 130px;
-                font-size: 12px;
-            }
-            .clear-records-btn {
-                font-size: 11px;
-                padding: 4px 12px;
-            }
-            .map-tip-bar {
-                font-size: 13px;
-                padding: 9px 20px;
-                top: 18px;
-            }
-            .crosshair-hint {
-                width: 40px;
-                height: 40px;
-            }
-            .crosshair-hint::before {
-                width: 30px;
-                height: 2px;
-                left: 5px;
-            }
-            .crosshair-hint::after {
-                width: 2px;
-                height: 30px;
-                top: 5px;
-            }
-            .social-share-sheet {
-                max-width: 500px;
-                border-radius: 20px 20px 0 0;
-            }
-            .source-link-row {
-                margin-top: 8px;
-                padding: 8px 0 4px;
-            }
-            .source-link {
-                font-size: 13px;
-                padding: 8px 18px;
-            }
+            .panel-header .status-badge { font-size: 13px; padding: 6px 14px; }
+            .address-search input { font-size: 14px; padding: 10px 14px; }
+            .address-search .btn-xs { font-size: 13px; padding: 10px 16px; }
+            .fence-settings .input-group { padding: 8px 12px; }
+            .fence-settings .input-group label { font-size: 11px; }
+            .fence-settings .input-group input { font-size: 13px; }
+            .copy-btn { font-size: 13px; padding: 9px 16px; border-radius: 16px; }
+            .radius-row { padding: 10px 14px; gap: 12px; }
+            .radius-row label { font-size: 12px; }
+            .radius-row input[type="range"] { height: 8px; }
+            .radius-row input[type="range"]::-webkit-slider-thumb { width: 28px; height: 28px; }
+            .radius-input-wrap { width: 100px; padding: 6px 10px; }
+            .radius-input-wrap input { font-size: 16px; }
+            .info-item { padding: 12px 14px; }
+            .info-item .val { font-size: 22px; }
+            .btn { padding: 13px 16px; font-size: 14px; border-radius: 24px; }
+            .records-panel { margin-top: 10px; border-top: 1px solid #333; padding-top: 12px; }
+            .records-title { font-size: 14px; }
+            .records-list { max-height: 130px; font-size: 12px; }
+            .clear-records-btn { font-size: 11px; padding: 4px 12px; }
+            .map-tip-bar { font-size: 13px; padding: 9px 20px; top: 18px; }
+            .crosshair-hint { width: 40px; height: 40px; }
+            .crosshair-hint::before { width: 30px; height: 2px; left: 5px; }
+            .crosshair-hint::after { width: 2px; height: 30px; top: 5px; }
+            .source-link-row { margin-top: 8px; padding: 8px 0 4px; }
+            .source-link { font-size: 13px; padding: 8px 18px; }
         }
 
         @media (max-width: 400px) {
-            .app-container {
-                border-radius: 14px;
-                height: 97vh;
-            }
-            .header {
-                padding: 10px 12px;
-            }
-            .header .title {
-                font-size: 14px;
-            }
-            .header .title .icon {
-                width: 20px;
-                height: 20px;
-            }
-            .bottom-panel {
-                padding: 8px 10px 12px;
-                gap: 6px;
-            }
-            .btn {
-                padding: 10px 8px;
-                font-size: 12px;
-                border-radius: 18px;
-            }
-            .fence-settings .input-group input {
-                font-size: 11px;
-            }
-            .radius-row {
-                padding: 6px 10px;
-                gap: 6px;
-            }
-            .radius-row input[type="range"]::-webkit-slider-thumb {
-                width: 22px;
-                height: 22px;
-            }
-            .radius-input-wrap {
-                width: 80px;
-            }
-            .address-search {
-                padding: 6px 10px;
-            }
-            .address-search input {
-                padding: 6px 10px;
-                font-size: 12px;
-            }
-            .address-search .btn-xs {
-                padding: 6px 10px;
-                font-size: 11px;
-            }
-            .copy-btn,
-            .share-btn {
-                padding: 6px 10px;
-                font-size: 11px;
-                border-radius: 12px;
-            }
-            .source-link {
-                font-size: 11px;
-                padding: 5px 12px;
-            }
+            .app-container { border-radius: 14px; height: 97vh; }
+            .header { padding: 10px 12px; }
+            .header .title { font-size: 14px; }
+            .header .title .icon { width: 20px; height: 20px; }
+            .bottom-panel { padding: 8px 10px 12px; gap: 6px; }
+            .btn { padding: 10px 8px; font-size: 12px; border-radius: 18px; }
+            .fence-settings .input-group input { font-size: 11px; }
+            .radius-row { padding: 6px 10px; gap: 6px; }
+            .radius-row input[type="range"]::-webkit-slider-thumb { width: 22px; height: 22px; }
+            .radius-input-wrap { width: 80px; }
+            .address-search { padding: 6px 10px; }
+            .address-search input { padding: 6px 10px; font-size: 12px; }
+            .address-search .btn-xs { padding: 6px 10px; font-size: 11px; }
+            .copy-btn { padding: 6px 10px; font-size: 11px; border-radius: 12px; }
+            .source-link { font-size: 11px; padding: 5px 12px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 微信分享提示浮层 -->
-    <div class="weixin-share-tip" id="weixinShareTip">
-        <span class="arrow-up">👆</span> 点击右上角 <strong>「…」</strong> 分享给朋友
-        <button class="close-tip" id="closeWeixinTip" aria-label="关闭提示">✕</button>
-    </div>
+<!-- 微信分享提示浮层 -->
+<div class="weixin-share-tip" id="weixinShareTip">
+    <span class="arrow-up">👆</span> 点击右上角 <strong>「…」</strong> 分享给朋友
+    <button class="close-tip" id="closeWeixinTip" aria-label="关闭提示">✕</button>
+</div>
 
-    <!-- 社交分享弹窗 -->
-    <div class="social-share-overlay" id="socialShareOverlay">
-        <div class="social-share-sheet">
-            <div class="sheet-title">🔗 分享此围栏坐标</div>
-            <div class="share-icons">
-                <button class="share-icon-item" data-platform="qq" aria-label="分享到QQ">
-                    <span class="share-icon-circle qq">🐧</span>
-                    <span>QQ好友</span>
-                </button>
-                <button class="share-icon-item" data-platform="wechat" aria-label="分享到微信">
-                    <span class="share-icon-circle wechat">💬</span>
-                    <span>微信</span>
-                </button>
-                <button class="share-icon-item" data-platform="weibo" aria-label="分享到微博">
-                    <span class="share-icon-circle weibo">📢</span>
-                    <span>微博</span>
-                </button>
-                <button class="share-icon-item" data-platform="link" aria-label="复制链接">
-                    <span class="share-icon-circle link">📋</span>
-                    <span>复制链接</span>
-                </button>
-            </div>
-            <button class="cancel-btn" id="cancelShareSheet">取消</button>
+<div class="app-container">
+    <!-- 移动端顶部（包含logo图标） -->
+    <div class="header mobile-only-header">
+        <span class="title">
+            <img src="./static/logo/map.svg" class="icon" alt="地图logo" />
+            坐标拾取 & 范围预览
+        </span>
+        <div class="status-badge unknown" id="statusBadgeMobile">
+            <span class="status-dot"></span>
+            <span id="statusTextMobile">等待定位</span>
         </div>
     </div>
 
-    <div class="app-container">
-        <!-- 移动端顶部（包含logo图标） -->
-        <div class="header mobile-only-header">
-            <span class="title">
+    <div class="map-wrap" id="mapWrap">
+        <div id="container"></div>
+        <div class="map-tip-bar" id="mapTip">💡 点击地图拾取坐标 | 长按设围栏中心</div>
+        <div class="crosshair-hint" id="crosshair"></div>
+    </div>
+
+    <div class="bottom-panel" id="bottomPanel">
+        <!-- PC端侧边栏标题（包含logo图标） -->
+        <div class="panel-header pc-only-header" style="display: none;">
+            <span class="pc-title">
                 <img src="./static/logo/map.svg" class="icon" alt="地图logo" />
                 坐标拾取 & 范围预览
             </span>
-            <div class="status-badge unknown" id="statusBadgeMobile">
+            <div class="status-badge unknown" id="statusBadgePC">
                 <span class="status-dot"></span>
-                <span id="statusTextMobile">等待定位</span>
+                <span id="statusTextPC">等待定位</span>
             </div>
         </div>
 
-        <div class="map-wrap" id="mapWrap">
-            <div id="container"></div>
-            <div class="map-tip-bar" id="mapTip">💡 点击地图拾取坐标 | 长按设围栏中心</div>
-            <div class="crosshair-hint" id="crosshair"></div>
+        <div class="address-search">
+            <input type="text" id="addressInput" placeholder="输入地址，如：天安门" />
+            <button class="btn-xs primary" id="btnSearchAddress">🔍 搜索</button>
         </div>
 
-        <div class="bottom-panel" id="bottomPanel">
-            <!-- PC端侧边栏标题（包含logo图标） -->
-            <div class="panel-header pc-only-header" style="display: none;">
-                <span class="pc-title">
-                    <img src="./static/logo/map.svg" class="icon" alt="地图logo" />
-                    坐标拾取 & 范围预览
-                </span>
-                <div class="status-badge unknown" id="statusBadgePC">
-                    <span class="status-dot"></span>
-                    <span id="statusTextPC">等待定位</span>
-                </div>
+        <div class="fence-settings">
+            <div class="input-group">
+                <label>中心经度</label>
+                <input type="number" step="0.000001" id="fenceLng" placeholder="121.499763" lang="en">
             </div>
+            <div class="input-group">
+                <label>中心纬度</label>
+                <input type="number" step="0.000001" id="fenceLat" placeholder="31.239666" lang="en">
+            </div>
+        </div>
 
-            <div class="address-search">
-                <input type="text" id="addressInput" placeholder="输入地址，如：天安门" />
-                <button class="btn-xs primary" id="btnSearchAddress">🔍 搜索</button>
-            </div>
+        <div class="copy-row">
+            <button class="copy-btn" id="btnCopy" title="复制拾取坐标">📋 复制坐标</button>
+        </div>
 
-            <div class="fence-settings">
-                <div class="input-group">
-                    <label>中心经度</label>
-                    <input type="number" step="0.000001" id="fenceLng" placeholder="121.499763" lang="en">
-                </div>
-                <div class="input-group">
-                    <label>中心纬度</label>
-                    <input type="number" step="0.000001" id="fenceLat" placeholder="31.239666" lang="en">
-                </div>
+        <div class="radius-row">
+            <label>🔘 半径</label>
+            <input type="range" id="radiusSlider" min="10" max="20000" value="1000" step="1">
+            <div class="radius-input-wrap">
+                <input type="number" id="radiusInput" min="10" max="20000" step="1" value="1000">
+                <span>m</span>
             </div>
+        </div>
 
-            <div class="copy-row">
-                <button class="copy-btn" id="btnCopy" title="复制拾取坐标">📋 复制坐标</button>
-                <button class="share-btn" id="btnShare" title="分享围栏链接">🔗 分享</button>
+        <div class="info-row">
+            <div class="info-item" id="distBox">
+                <div>距围栏中心</div>
+                <div class="val" id="distVal">--</div>
+                <div>米</div>
             </div>
+            <div class="info-item">
+                <div>围栏半径</div>
+                <div class="val" id="radiusVal">1000</div>
+                <div>米</div>
+            </div>
+            <div class="info-item" id="statusInfoBox">
+                <div>状态</div>
+                <div class="val" id="statusInfoVal">--</div>
+            </div>
+        </div>
 
-            <div class="radius-row">
-                <label>🔘 半径</label>
-                <input type="range" id="radiusSlider" min="10" max="20000" value="1000" step="1">
-                <div class="radius-input-wrap">
-                    <input type="number" id="radiusInput" min="10" max="20000" step="1" value="1000">
-                    <span>m</span>
-                </div>
-            </div>
+        <div class="btn-row">
+            <button class="btn btn-outline" id="btnLocate">📡 获取位置</button>
+            <button class="btn btn-primary" id="btnManualCheckIn">✅ 模拟打卡</button>
+            <button class="btn btn-warn" id="btnReset">🔄 重置</button>
+        </div>
 
-            <div class="info-row">
-                <div class="info-item" id="distBox">
-                    <div>距围栏中心</div>
-                    <div class="val" id="distVal">--</div>
-                    <div>米</div>
-                </div>
-                <div class="info-item">
-                    <div>围栏半径</div>
-                    <div class="val" id="radiusVal">1000</div>
-                    <div>米</div>
-                </div>
-                <div class="info-item" id="statusInfoBox">
-                    <div>状态</div>
-                    <div class="val" id="statusInfoVal">--</div>
-                </div>
+        <div class="records-panel" id="recordsPanel">
+            <div class="records-title">
+                📋 打卡记录
+                <button class="clear-records-btn" id="btnClearRecords">清空记录</button>
             </div>
+            <ul class="records-list" id="recordsList">
+                <li style="color:#aaa;">暂无记录</li>
+            </ul>
+        </div>
 
-            <div class="btn-row">
-                <button class="btn btn-outline" id="btnLocate">📡 获取位置</button>
-                <button class="btn btn-primary" id="btnManualCheckIn">✅ 模拟打卡</button>
-                <button class="btn btn-warn" id="btnReset">🔄 重置</button>
-            </div>
-
-            <div class="records-panel" id="recordsPanel">
-                <div class="records-title">
-                    📋 打卡记录
-                    <button class="clear-records-btn" id="btnClearRecords">清空记录</button>
-                </div>
-                <ul class="records-list" id="recordsList">
-                    <li style="color:#aaa;">暂无记录</li>
-                </ul>
-            </div>
-
-            <!-- 源码获取链接 -->
-            <div class="source-link-row">
-                <a href="https://github.com/YL2209/map_naokuo.git" target="_blank" rel="noopener noreferrer" class="source-link">
-                    <span>📂</span> 获取源码
-                </a>
-            </div>
+        <!-- 源码获取链接 -->
+        <div class="source-link-row">
+            <a href="https://github.com/YL2209/map_naokuo.git" target="_blank" rel="noopener noreferrer" class="source-link">
+                <span>📂</span> 获取源码
+            </a>
         </div>
     </div>
+</div>
 
-    <div class="toast" id="toast"></div>
+<div class="toast" id="toast"></div>
 
-    <!-- 隐藏的微数据块，用于QQ分享抓取 -->
-    <div style="display:none;" itemscope itemtype="https://schema.org/WebApplication">
-        <span itemprop="name">坐标拾取 & 打卡范围预览</span>
-        <span itemprop="description">精准地图坐标拾取工具，支持围栏范围预览、打卡模拟、GPS定位。</span>
-        <span itemprop="applicationCategory">Utilities</span>
-    </div>
+<script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=C4MBZ-RM5OH-CNUD2-WAI5F-M3FG5-SNB7G"></script>
+<script>
+    (function() {
+        const STORAGE_KEY = 'fence_app_full_state';
+        const API_KEY = 'C4MBZ-RM5OH-CNUD2-WAI5F-M3FG5-SNB7G';
 
-    <script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=C4MBZ-RM5OH-CNUD2-WAI5F-M3FG5-SNB7G">
-    </script>
-    <script>
-        (function() {
-            const STORAGE_KEY = 'fence_app_full_state';
-            const API_KEY = 'C4MBZ-RM5OH-CNUD2-WAI5F-M3FG5-SNB7G';
+        // 设置分享预览logo
+        function setShareLogo() {
+            const logoUrl = window.location.origin + '/static/logo/map.svg';
+            setMetaContent('og:image', logoUrl);
+            setMetaContent('twitter:image', logoUrl);
+            setMetaContent('itemprop', 'image', logoUrl);
+        }
 
-            // 解析URL参数
-            function parseURLParams() {
-                const params = new URLSearchParams(window.location.search);
-                return {
-                    lat: params.get('lat') ? parseFloat(params.get('lat')) : null,
-                    lng: params.get('lng') ? parseFloat(params.get('lng')) : null,
-                    radius: params.get('radius') ? parseInt(params.get('radius'), 10) : null,
-                };
-            }
+        function parseURLParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                lat: params.get('lat') ? parseFloat(params.get('lat')) : null,
+                lng: params.get('lng') ? parseFloat(params.get('lng')) : null,
+                radius: params.get('radius') ? parseInt(params.get('radius'), 10) : null,
+            };
+        }
 
-            function loadState() {
-                const urlParams = parseURLParams();
-                try {
-                    const raw = localStorage.getItem(STORAGE_KEY);
-                    if (raw) {
-                        const saved = JSON.parse(raw);
-                        return {
-                            fenceCenter: {
-                                lat: urlParams.lat || (saved.fenceCenter ? saved.fenceCenter.lat : 31.239666),
-                                lng: urlParams.lng || (saved.fenceCenter ? saved.fenceCenter.lng : 121.499763),
-                            },
-                            fenceRadius: urlParams.radius || saved.fenceRadius || 1000,
-                            userLatLng: urlParams.lat && urlParams.lng ? null : (saved.userLatLng || null),
-                            records: Array.isArray(saved.records) ? saved.records.slice(0, 20) : [],
-                        };
-                    }
-                } catch (e) {}
-                return {
-                    fenceCenter: {
-                        lat: urlParams.lat || 31.239666,
-                        lng: urlParams.lng || 121.499763,
-                    },
-                    fenceRadius: urlParams.radius || 1000,
-                    userLatLng: null,
-                    records: [],
-                };
-            }
-
-            function saveState() {
-                try {
-                    const data = {
-                        fenceCenter: state.fenceCenter,
-                        fenceRadius: state.fenceRadius,
-                        userLatLng: state.userLatLng,
-                        records: state.records.slice(0, 20),
+        function loadState() {
+            const urlParams = parseURLParams();
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const saved = JSON.parse(raw);
+                    return {
+                        fenceCenter: {
+                            lat: urlParams.lat || (saved.fenceCenter ? saved.fenceCenter.lat : 31.239666),
+                            lng: urlParams.lng || (saved.fenceCenter ? saved.fenceCenter.lng : 121.499763),
+                        },
+                        fenceRadius: urlParams.radius || saved.fenceRadius || 1000,
+                        userLatLng: urlParams.lat && urlParams.lng ? null : (saved.userLatLng || null),
+                        records: Array.isArray(saved.records) ? saved.records.slice(0, 20) : [],
                     };
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-                } catch (e) {}
-            }
-
-            // 更新浏览器URL（不刷新页面）
-            function updateBrowserURL() {
-                const params = new URLSearchParams();
-                params.set('lat', fmtCoord(state.fenceCenter.lat, 6));
-                params.set('lng', fmtCoord(state.fenceCenter.lng, 6));
-                params.set('radius', state.fenceRadius.toString());
-                const newURL = window.location.origin + window.location.pathname + '?' + params.toString();
-                try {
-                    window.history.replaceState({}, '', newURL);
-                } catch (e) {
-                    // 某些浏览器可能不支持replaceState
                 }
-                // 动态更新OG标签
-                updateOGTags();
-            }
-
-            // 动态更新OG meta标签
-            function updateOGTags() {
-                const shareURL = window.location.origin + window.location.pathname + '?' +
-                    new URLSearchParams({
-                        lat: fmtCoord(state.fenceCenter.lat, 6),
-                        lng: fmtCoord(state.fenceCenter.lng, 6),
-                        radius: state.fenceRadius.toString(),
-                    }).toString();
-                const staticMapImg = buildStaticMapURL();
-                const ogTitle = `围栏坐标: ${fmtCoord(state.fenceCenter.lat,4)},${fmtCoord(state.fenceCenter.lng,4)} | 半径${state.fenceRadius}m`;
-
-                setMetaContent('og:url', shareURL);
-                setMetaContent('og:title', ogTitle);
-                setMetaContent('og:image', staticMapImg);
-                setMetaContent('twitter:title', ogTitle);
-                setMetaContent('twitter:image', staticMapImg);
-                setMetaContent('twitter:url', shareURL);
-                setMetaContent('itemprop', 'name', ogTitle);
-                setMetaContent('itemprop', 'image', staticMapImg);
-            }
-
-            function setMetaContent(attrName, attrValue, content) {
-                let selector;
-                if (content === undefined) {
-                    // 两参数模式：attrName是property/name，attrValue是content
-                    content = attrValue;
-                    selector = `meta[property="${attrName}"], meta[name="${attrName}"]`;
-                } else {
-                    // 三参数模式：attrName是属性名(如itemprop)，attrValue是属性值，content是内容
-                    selector = `meta[${attrName}="${attrValue}"]`;
-                }
-                const el = document.querySelector(selector);
-                if (el) {
-                    el.setAttribute('content', content);
-                }
-            }
-
-            function buildStaticMapURL() {
-                const lat = fmtCoord(state.fenceCenter.lat, 6);
-                const lng = fmtCoord(state.fenceCenter.lng, 6);
-                const zoom = state.fenceRadius < 500 ? 15 : (state.fenceRadius < 2000 ? 14 : (state.fenceRadius < 8000 ?
-                    12 : 10));
-                return `https://apis.map.qq.com/ws/staticmap/v2/?center=${lat},${lng}&zoom=${zoom}&size=600x315&key=${API_KEY}&scale=2&markers=color:blue|label:F|${lat},${lng}`;
-            }
-
-            const saved = loadState();
-            const state = {
-                fenceCenter: saved.fenceCenter,
-                fenceRadius: saved.fenceRadius,
-                userLatLng: saved.userLatLng,
-                pickedCoord: null,
-                isInside: null,
-                records: saved.records,
+            } catch (e) {}
+            return {
+                fenceCenter: { lat: urlParams.lat || 31.239666, lng: urlParams.lng || 121.499763 },
+                fenceRadius: urlParams.radius || 1000,
+                userLatLng: null,
+                records: [],
             };
+        }
 
-            const $ = (id) => document.getElementById(id);
-
-            const statusBadgeMobile = $('statusBadgeMobile');
-            const statusTextMobile = $('statusTextMobile');
-            const statusBadgePC = $('statusBadgePC');
-            const statusTextPC = $('statusTextPC');
-
-            const distBox = $('distBox');
-            const distVal = $('distVal');
-            const radiusVal = $('radiusVal');
-            const statusInfoBox = $('statusInfoBox');
-            const statusInfoVal = $('statusInfoVal');
-            const mapTip = $('mapTip');
-            const crosshair = $('crosshair');
-            const btnCopy = $('btnCopy');
-            const btnShare = $('btnShare');
-            const fenceLngInput = $('fenceLng');
-            const fenceLatInput = $('fenceLat');
-            const radiusSlider = $('radiusSlider');
-            const radiusInput = $('radiusInput');
-            const btnLocate = $('btnLocate');
-            const btnManualCheckIn = $('btnManualCheckIn');
-            const btnReset = $('btnReset');
-            const recordsList = $('recordsList');
-            const btnClearRecords = $('btnClearRecords');
-            const toast = $('toast');
-            const addressInput = $('addressInput');
-            const btnSearchAddress = $('btnSearchAddress');
-            const socialShareOverlay = $('socialShareOverlay');
-            const cancelShareSheet = $('cancelShareSheet');
-            const weixinShareTip = $('weixinShareTip');
-            const closeWeixinTip = $('closeWeixinTip');
-
-            let map, fenceLayer, userMarkerLayer, centerMarkerLayer;
-            let geocoder = null;
-            let toastTimer = null;
-            let copyFeedbackTimer = null;
-            let flashTimer = null;
-
-            // 检测微信浏览器
-            const isWeixinBrowser = /micromessenger/i.test(navigator.userAgent);
-
-            function getStatusElements() {
-                const isPC = window.matchMedia('(min-width: 768px)').matches;
-                return {
-                    badge: isPC ? statusBadgePC : statusBadgeMobile,
-                    text: isPC ? statusTextPC : statusTextMobile,
+        function saveState() {
+            try {
+                const data = {
+                    fenceCenter: state.fenceCenter,
+                    fenceRadius: state.fenceRadius,
+                    userLatLng: state.userLatLng,
+                    records: state.records.slice(0, 20),
                 };
-            }
-
-            function calcDistance(lat1, lng1, lat2, lng2) {
-                const R = 6371000;
-                const toRad = deg => deg * Math.PI / 180;
-                const dLat = toRad(lat2 - lat1);
-                const dLng = toRad(lng2 - lng1);
-                const a = Math.sin(dLat / 2) ** 2 +
-                    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-                return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            }
-
-            function checkInside(lat, lng) {
-                const dist = calcDistance(lat, lng, state.fenceCenter.lat, state.fenceCenter.lng);
-                return { inside: dist <= state.fenceRadius, distance: dist };
-            }
-
-            function fmtDist(m) {
-                if (m === null || m === undefined) return '--';
-                if (m < 1) return '<1';
-                if (m >= 1000) return (m / 1000).toFixed(2) + ' km';
-                return Math.round(m).toString();
-            }
-
-            function fmtCoord(coord, digits = 6) {
-                if (coord === null || coord === undefined) return '--';
-                return Number(coord).toFixed(digits);
-            }
-
-            function timeStr() {
-                const d = new Date();
-                const pad = n => String(n).padStart(2, '0');
-                return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-            }
-
-            function showToast(msg, type = 'success') {
-                if (toastTimer) clearTimeout(toastTimer);
-                toast.className = 'toast ' + type;
-                toast.textContent = msg;
-                void toast.offsetWidth;
-                toast.classList.add('show');
-                toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-            }
-
-            function updateStatusUI() {
-                const { badge, text } = getStatusElements();
-                [statusBadgeMobile, statusBadgePC].forEach(b => {
-                    if (b) b.classList.remove('inside', 'outside', 'unknown');
-                });
-                distBox.classList.remove('danger', 'success', 'warning');
-                statusInfoBox.classList.remove('danger', 'success', 'warning');
-
-                if (state.isInside === true) {
-                    if (badge) badge.classList.add('inside');
-                    if (text) text.textContent = '在围栏内';
-                    distBox.classList.add('success');
-                    statusInfoBox.classList.add('success');
-                    statusInfoVal.textContent = '✅ 范围内';
-                    statusInfoVal.style.color = '#00b578';
-                } else if (state.isInside === false) {
-                    if (badge) badge.classList.add('outside');
-                    if (text) text.textContent = '在围栏外';
-                    distBox.classList.add('danger');
-                    statusInfoBox.classList.add('danger');
-                    statusInfoVal.textContent = '❌ 范围外';
-                    statusInfoVal.style.color = '#ff4d4f';
-                } else {
-                    if (badge) badge.classList.add('unknown');
-                    if (text) text.textContent = '等待定位';
-                    statusInfoBox.classList.add('warning');
-                    statusInfoVal.textContent = '--';
-                    statusInfoVal.style.color = '#d48806';
-                }
-            }
-
-            function updateDistanceUI(dist) {
-                distVal.textContent = fmtDist(dist);
-                radiusVal.textContent = state.fenceRadius;
-                radiusSlider.value = state.fenceRadius;
-                radiusInput.value = state.fenceRadius;
-            }
-
-            function updateFenceInputs() {
-                fenceLatInput.value = fmtCoord(state.fenceCenter.lat);
-                fenceLngInput.value = fmtCoord(state.fenceCenter.lng);
-            }
-
-            function renderRecords() {
-                if (!recordsList) return;
-                if (state.records.length === 0) {
-                    recordsList.innerHTML = '<li style="color:#aaa;">暂无记录</li>';
-                    return;
-                }
-                let html = '';
-                state.records.forEach(r => {
-                    const cls = r.success ? 'record-success' : 'record-fail';
-                    const icon = r.success ? '✅' : '❌';
-                    html +=
-                        `<li><span>${icon} ${r.time}</span><span class="${cls}">${fmtDist(r.dist)}m</span></li>`;
-                });
-                recordsList.innerHTML = html;
-            }
-
-            function clearRecords() {
-                state.records = [];
-                renderRecords();
-                saveState();
-                showToast('📋 打卡记录已清空', 'info');
-            }
-
-            function updateAllUI(dist) {
-                updateStatusUI();
-                updateDistanceUI(dist);
-                updateFenceInputs();
-                renderRecords();
-            }
-
-            const FENCE_STYLES = {
-                default: new TMap.CircleStyle({
-                    color: 'rgba(77,148,255,0.18)',
-                    showBorder: true,
-                    borderColor: 'rgba(77,148,255,0.8)',
-                    width: 2,
-                }),
-                inside: new TMap.CircleStyle({
-                    color: 'rgba(0,181,120,0.18)',
-                    showBorder: true,
-                    borderColor: 'rgba(0,181,120,0.8)',
-                    width: 2.5,
-                }),
-                outside: new TMap.CircleStyle({
-                    color: 'rgba(255,77,79,0.15)',
-                    showBorder: true,
-                    borderColor: 'rgba(255,77,79,0.8)',
-                    width: 2.5,
-                }),
-            };
-
-            function updateFenceLayer() {
-                if (!fenceLayer) return;
-                let styleId = 'default';
-                if (state.isInside === true) styleId = 'inside';
-                else if (state.isInside === false) styleId = 'outside';
-                fenceLayer.setGeometries([{
-                    styleId: styleId,
-                    center: new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng),
-                    radius: state.fenceRadius,
-                }]);
-            }
-
-            function updateCenterMarker() {
-                if (!centerMarkerLayer) return;
-                centerMarkerLayer.setGeometries([{
-                    styleId: 'center',
-                    position: new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng),
-                    draggable: true,
-                }]);
-            }
-
-            function createDotIcon(color, size) {
-                const canvas = document.createElement('canvas');
-                canvas.width = size;
-                canvas.height = size;
-                const ctx = canvas.getContext('2d');
-                const half = size / 2;
-                const grad = ctx.createRadialGradient(half, half, size * 0.22, half, half, half);
-                grad.addColorStop(0, color);
-                grad.addColorStop(1, 'transparent');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, size, size);
-                ctx.beginPath();
-                ctx.arc(half, half, size * 0.3, 0, Math.PI * 2);
-                ctx.fillStyle = color;
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255,255,255,0.6)';
-                ctx.lineWidth = 2.5;
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.arc(half, half, size * 0.1, 0, Math.PI * 2);
-                ctx.fillStyle = '#fff';
-                ctx.fill();
-                return canvas.toDataURL();
-            }
-
-            function createCenterIcon() {
-                const size = 30;
-                const canvas = document.createElement('canvas');
-                canvas.width = size;
-                canvas.height = size;
-                const ctx = canvas.getContext('2d');
-                const cx = size / 2;
-                const cy = size / 2;
-                ctx.beginPath();
-                ctx.arc(cx, cy + 1, 12, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0,0,0,0.5)';
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(cx, cy, 11, 0, Math.PI * 2);
-                ctx.fillStyle = '#4d94ff';
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255,255,255,0.7)';
-                ctx.lineWidth = 2.5;
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.arc(cx, cy, 5, 0, Math.PI * 2);
-                ctx.fillStyle = '#fff';
-                ctx.fill();
-                ctx.fillStyle = '#4d94ff';
-                ctx.fillRect(cx - 1, cy - 4, 2, 8);
-                ctx.fillRect(cx - 4, cy - 1, 8, 2);
-                return canvas.toDataURL();
-            }
-
-            function updateUserMarker() {
-                if (!userMarkerLayer) return;
-                const colorMap = { true: '#00b578', false: '#ff4d4f', null: '#faad14' };
-                const color = colorMap[String(state.isInside)];
-                const icon = createDotIcon(color, 26);
-                if (state.userLatLng) {
-                    userMarkerLayer.setStyles({
-                        'user': new TMap.MarkerStyle({
-                            width: 26,
-                            height: 26,
-                            anchor: { x: 13, y: 13 },
-                            src: icon,
-                        })
-                    });
-                    userMarkerLayer.setGeometries([{
-                        styleId: 'user',
-                        position: new TMap.LatLng(state.userLatLng.lat, state.userLatLng.lng),
-                    }]);
-                } else {
-                    userMarkerLayer.setGeometries([]);
-                }
-            }
-
-            function setFenceCenterSilent(lat, lng) {
-                state.fenceCenter = { lat, lng };
-                updateCenterMarker();
-                updateFenceLayer();
-                if (state.userLatLng) {
-                    const result = checkInside(state.userLatLng.lat, state.userLatLng.lng);
-                    state.isInside = result.inside;
-                    updateUserMarker();
-                    updateFenceLayer();
-                    updateDistanceUI(result.distance);
-                } else {
-                    updateDistanceUI(null);
-                }
-                updateFenceInputs();
-                updateBrowserURL();
-                saveState();
-            }
-
-            function setUserPos(lat, lng) {
-                state.userLatLng = { lat, lng };
-                const result = checkInside(lat, lng);
-                state.isInside = result.inside;
-                updateUserMarker();
-                updateFenceLayer();
-                updateAllUI(result.distance);
-                const midLat = (lat + state.fenceCenter.lat) / 2;
-                const midLng = (lng + state.fenceCenter.lng) / 2;
-                const d = calcDistance(lat, lng, state.fenceCenter.lat, state.fenceCenter.lng);
-                let zoom = 15;
-                if (d > 1000) zoom = 13;
-                if (d > 3000) zoom = 11;
-                if (d > 8000) zoom = 9;
-                map.setCenter(new TMap.LatLng(midLat, midLng));
-                map.setZoom(zoom);
-                updateBrowserURL();
-                saveState();
-            }
-
-            function clearUserPos() {
-                state.userLatLng = null;
-                state.isInside = null;
-                updateUserMarker();
-                updateFenceLayer();
-                updateAllUI(null);
-                map.setCenter(new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng));
-                map.setZoom(15);
-                mapTip.classList.remove('hidden');
-                updateBrowserURL();
-                saveState();
-            }
-
-            function pickCoordinate(lat, lng) {
-                state.pickedCoord = { lat, lng };
-                if (flashTimer) clearTimeout(flashTimer);
-                crosshair.classList.add('flash');
-                flashTimer = setTimeout(() => crosshair.classList.remove('flash'), 280);
-                const currentZoom = map.getZoom();
-                if (currentZoom < 15) {
-                    map.setZoom(15);
-                }
-                map.setCenter(new TMap.LatLng(lat, lng));
-                setFenceCenterSilent(lat, lng);
-            }
-
-            function performCheckIn(lat, lng) {
-                const result = checkInside(lat, lng);
-                state.isInside = result.inside;
-                state.records.unshift({ time: timeStr(), success: result.inside, dist: result.distance });
-                if (state.records.length > 20) state.records.pop();
-                updateAllUI(result.distance);
-                if (result.inside) {
-                    showToast('🎉 打卡成功！在围栏内', 'success');
-                } else {
-                    const over = result.distance - state.fenceRadius;
-                    showToast(`❌ 打卡失败！超出 ${fmtDist(over)} 米`, 'fail');
-                }
-                saveState();
-            }
-
-            function manualCheckIn() {
-                if (!state.userLatLng) {
-                    showToast('⚠️ 请先获取GPS位置或点击地图设置用户位置', 'warning');
-                    return;
-                }
-                performCheckIn(state.userLatLng.lat, state.userLatLng.lng);
-            }
-
-            function locateAndSetPosition() {
-                if (!navigator.geolocation) {
-                    showToast('⚠️ 浏览器不支持GPS', 'warning');
-                    return;
-                }
-                btnLocate.disabled = true;
-                btnLocate.textContent = '⏳ 定位中';
-                navigator.geolocation.getCurrentPosition(
-                    pos => {
-                        const lat = pos.coords.latitude;
-                        const lng = pos.coords.longitude;
-                        setUserPos(lat, lng);
-                        state.pickedCoord = { lat, lng };
-                        mapTip.classList.add('hidden');
-                        btnLocate.disabled = false;
-                        btnLocate.textContent = '📡 获取位置';
-                        showToast('📍 定位成功，可点击"模拟打卡"', 'success');
-                    },
-                    err => {
-                        let msg = '❌ 定位失败';
-                        if (err.code === 1) msg = '❌ 定位权限被拒绝';
-                        else if (err.code === 2) msg = '❌ 无法获取位置信息';
-                        else if (err.code === 3) msg = '⏰ 定位超时';
-                        showToast(msg, 'fail');
-                        btnLocate.disabled = false;
-                        btnLocate.textContent = '📡 获取位置';
-                    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }
-                );
-            }
-
-            function geocodeAddressFallback(address, callback) {
-                const url =
-                    `https://apis.map.qq.com/ws/geocoder/v1/?address=${encodeURIComponent(address)}&key=${API_KEY}&output=jsonp&callback=handleGeocode`;
-                const script = document.createElement('script');
-                window.handleGeocode = function(data) {
-                    if (data.status === 0 && data.result && data.result.location) {
-                        const loc = data.result.location;
-                        callback(null, { lat: loc.lat, lng: loc.lng });
-                    } else {
-                        callback(new Error(data.message || '未找到地址'));
-                    }
-                    document.head.removeChild(script);
-                    delete window.handleGeocode;
-                };
-                script.src = url;
-                script.onerror = () => {
-                    callback(new Error('网络请求失败'));
-                    document.head.removeChild(script);
-                    delete window.handleGeocode;
-                };
-                document.head.appendChild(script);
-            }
-
-            function searchAddress() {
-                const address = addressInput.value.trim();
-                if (!address) {
-                    showToast('⚠️ 请输入地址', 'warning');
-                    return;
-                }
-                btnSearchAddress.disabled = true;
-                btnSearchAddress.textContent = '⏳ 搜索中';
-
-                const doSearch = (callback) => {
-                    if (geocoder) {
-                        geocoder.getLocation({ address }).then(result => {
-                            if (result && result.location) {
-                                callback(null, { lat: result.location.lat, lng: result.location
-                                        .lng });
-                            } else {
-                                callback(new Error('未找到该地址'));
-                            }
-                        }).catch(err => {
-                            callback(err);
-                        });
-                    } else {
-                        geocodeAddressFallback(address, callback);
-                    }
-                };
-
-                doSearch((err, location) => {
-                    btnSearchAddress.disabled = false;
-                    btnSearchAddress.textContent = '🔍 搜索';
-                    if (err) {
-                        showToast('❌ ' + (err.message || '搜索失败'), 'fail');
-                        return;
-                    }
-                    pickCoordinate(location.lat, location.lng);
-                    mapTip.classList.add('hidden');
-                    showToast('📍 地址定位成功', 'success');
-                });
-            }
-
-            function copyPickedCoord() {
-                if (!state.pickedCoord) {
-                    showToast('⚠️ 请先通过地图点击或GPS定位获取坐标', 'warning');
-                    return;
-                }
-                const text = `${fmtCoord(state.pickedCoord.lng)},${fmtCoord(state.pickedCoord.lat)}`;
-                doCopyText(text, () => {
-                    btnCopy.classList.add('copied');
-                    btnCopy.innerHTML = '✅ 已复制';
-                    showToast('📋 坐标已复制到剪贴板', 'success');
-                    if (copyFeedbackTimer) clearTimeout(copyFeedbackTimer);
-                    copyFeedbackTimer = setTimeout(() => {
-                        btnCopy.classList.remove('copied');
-                        btnCopy.innerHTML = '📋 复制坐标';
-                    }, 2000);
-                });
-            }
-
-            function doCopyText(text, onSuccess) {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text,
-                    onSuccess));
-                } else {
-                    fallbackCopy(text, onSuccess);
-                }
-            }
-
-            function fallbackCopy(text, onSuccess) {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.left = '-9999px';
-                document.body.appendChild(textarea);
-                textarea.focus();
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    if (onSuccess) onSuccess();
-                } catch (e) {
-                    showToast('⚠️ 复制失败，请手动复制', 'warning');
-                }
-                document.body.removeChild(textarea);
-            }
-
-            // 获取分享链接
-            function getShareURL() {
-                const params = new URLSearchParams();
-                params.set('lat', fmtCoord(state.fenceCenter.lat, 6));
-                params.set('lng', fmtCoord(state.fenceCenter.lng, 6));
-                params.set('radius', state.fenceRadius.toString());
-                return window.location.origin + window.location.pathname + '?' + params.toString();
-            }
-
-            function getShareTitle() {
-                return `围栏坐标: ${fmtCoord(state.fenceCenter.lat,4)},${fmtCoord(state.fenceCenter.lng,4)} | 半径${state.fenceRadius}m`;
-            }
-
-            function getShareDescription() {
-                const coordStr = `${fmtCoord(state.fenceCenter.lng,6)},${fmtCoord(state.fenceCenter.lat,6)}`;
-                return `围栏中心: ${coordStr}，半径: ${state.fenceRadius}米。点击查看地图围栏范围。`;
-            }
-
-            // Web Share API（移动端原生分享）
-            async function nativeShare() {
-                const shareData = {
-                    title: getShareTitle(),
-                    text: getShareDescription(),
-                    url: getShareURL(),
-                };
-                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-                    try {
-                        await navigator.share(shareData);
-                        showToast('✅ 分享成功', 'success');
-                        return true;
-                    } catch (err) {
-                        if (err.name !== 'AbortError') {
-                            console.log('Web Share API 失败:', err);
-                        }
-                        return false;
-                    }
-                }
-                return false;
-            }
-
-            // 打开社交分享弹窗
-            function openSocialShareSheet() {
-                socialShareOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeSocialShareSheet() {
-                socialShareOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            // 分享到QQ
-            function shareToQQ() {
-                const url = getShareURL();
-                const title = getShareTitle();
-                const summary = getShareDescription();
-                const pics = buildStaticMapURL();
-                const qqShareURL =
-                    `https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}&pics=${encodeURIComponent(pics)}`;
-                window.open(qqShareURL, '_blank', 'width=600,height=500');
-                closeSocialShareSheet();
-            }
-
-            // 分享到微博
-            function shareToWeibo() {
-                const url = getShareURL();
-                const title = getShareTitle();
-                const pic = buildStaticMapURL();
-                const weiboShareURL =
-                    `https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&pic=${encodeURIComponent(pic)}`;
-                window.open(weiboShareURL, '_blank', 'width=600,height=500');
-                closeSocialShareSheet();
-            }
-
-            // 分享到微信（复制链接+提示）
-            function shareToWechat() {
-                const url = getShareURL();
-                doCopyText(url, () => {
-                    closeSocialShareSheet();
-                    showToast('📋 链接已复制，请在微信中粘贴发送', 'info');
-                });
-            }
-
-            // 复制链接
-            function copyShareLink() {
-                const url = getShareURL();
-                doCopyText(url, () => {
-                    closeSocialShareSheet();
-                    showToast('📋 围栏链接已复制，可发送给好友', 'success');
-                });
-            }
-
-            // 主分享按钮处理
-            async function handleShare() {
-                // 先尝试Web Share API（移动端原生分享）
-                const nativeSuccess = await nativeShare();
-                if (nativeSuccess) return;
-
-                // PC端或Web Share不可用，打开社交分享弹窗
-                openSocialShareSheet();
-            }
-
-            function bindCrosshairFollow() {
-                const container = document.getElementById('container');
-                if (!container || !crosshair) return;
-                container.addEventListener('mousemove', (e) => {
-                    const rect = container.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    crosshair.style.left = x + 'px';
-                    crosshair.style.top = y + 'px';
-                    crosshair.classList.add('visible');
-                });
-                container.addEventListener('mouseleave', () => {
-                    crosshair.classList.remove('visible');
-                });
-                container.addEventListener('touchstart', () => {
-                    crosshair.classList.remove('visible');
-                }, { passive: true });
-            }
-
-            // 微信分享提示
-            function showWeixinShareTip() {
-                if (isWeixinBrowser && weixinShareTip) {
-                    setTimeout(() => {
-                        weixinShareTip.classList.add('show');
-                    }, 1500);
-                    setTimeout(() => {
-                        weixinShareTip.classList.remove('show');
-                    }, 10000);
-                }
-            }
-
-            function hideWeixinShareTip() {
-                if (weixinShareTip) {
-                    weixinShareTip.classList.remove('show');
-                }
-            }
-
-            function initMap() {
-                const center = new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng);
-                map = new TMap.Map('container', {
-                    zoom: 15,
-                    center: center,
-                    viewMode: '2D',
-                    mapStyleId: 'style1',
-                });
-
-                try {
-                    if (TMap.service && TMap.service.Geocoder) {
-                        geocoder = new TMap.service.Geocoder();
-                    } else {
-                        console.warn('TMap.service.Geocoder 不可用，将使用备用 WebService API');
-                    }
-                } catch (e) {
-                    console.warn('初始化地理编码失败，使用备用方案', e);
-                }
-
-                fenceLayer = new TMap.MultiCircle({
-                    map,
-                    styles: FENCE_STYLES,
-                    geometries: [{ styleId: 'default', center: center, radius: state.fenceRadius }],
-                });
-
-                centerMarkerLayer = new TMap.MultiMarker({
-                    map,
-                    styles: {
-                        'center': new TMap.MarkerStyle({
-                            width: 30,
-                            height: 30,
-                            anchor: { x: 15, y: 15 },
-                            src: createCenterIcon(),
-                        })
-                    },
-                    geometries: [{ styleId: 'center', position: center, draggable: true }],
-                });
-
-                centerMarkerLayer.on('dragend', (evt) => {
-                    if (evt.geometry && evt.geometry.position) {
-                        const newLat = evt.geometry.position.getLat();
-                        const newLng = evt.geometry.position.getLng();
-                        setFenceCenterSilent(newLat, newLng);
-                        state.pickedCoord = { lat: newLat, lng: newLng };
-                        showToast('📍 围栏中心已移动', 'info');
-                    }
-                });
-
-                userMarkerLayer = new TMap.MultiMarker({
-                    map,
-                    styles: {
-                        'user': new TMap.MarkerStyle({
-                            width: 26,
-                            height: 26,
-                            anchor: { x: 13, y: 13 },
-                            src: createDotIcon('#faad14', 26),
-                        })
-                    },
-                    geometries: [],
-                });
-
-                if (state.userLatLng) {
-                    const { lat, lng } = state.userLatLng;
-                    state.pickedCoord = { lat, lng };
-                    const result = checkInside(lat, lng);
-                    state.isInside = result.inside;
-                    updateUserMarker();
-                    updateFenceLayer();
-                    updateDistanceUI(result.distance);
-                    updateStatusUI();
-                    renderRecords();
-                }
-
-                const urlParams = parseURLParams();
-                if (urlParams.lat && urlParams.lng) {
-                    map.setCenter(new TMap.LatLng(urlParams.lat, urlParams.lng));
-                    const z = urlParams.radius ? (urlParams.radius < 500 ? 15 : (urlParams.radius < 2000 ? 14 :
-                        12)) : 15;
-                    map.setZoom(z);
-                    mapTip.classList.add('hidden');
-                    state.pickedCoord = { lat: urlParams.lat, lng: urlParams.lng };
-                }
-
-                map.on('click', (evt) => {
-                    if (evt.latLng) {
-                        const lat = evt.latLng.getLat();
-                        const lng = evt.latLng.getLng();
-                        pickCoordinate(lat, lng);
-                        mapTip.classList.add('hidden');
-                    }
-                });
-
-                map.on('longpress', (evt) => {
-                    if (evt.latLng) {
-                        const lat = evt.latLng.getLat();
-                        const lng = evt.latLng.getLng();
-                        pickCoordinate(lat, lng);
-                        mapTip.classList.add('hidden');
-                    }
-                });
-                map.on('rightclick', (evt) => {
-                    if (evt.latLng) {
-                        const lat = evt.latLng.getLat();
-                        const lng = evt.latLng.getLng();
-                        pickCoordinate(lat, lng);
-                        mapTip.classList.add('hidden');
-                    }
-                });
-
-                updateAllUI(null);
-                updateFenceInputs();
-                updateBrowserURL();
-
-                bindCrosshairFollow();
-                handleResponsiveHeader();
-                window.addEventListener('resize', handleResponsiveHeader);
-
-                showWeixinShareTip();
-            }
-
-            function handleResponsiveHeader() {
-                const isPC = window.matchMedia('(min-width: 768px)').matches;
-                const mobileHeader = document.querySelector('.mobile-only-header');
-                const pcHeader = document.querySelector('.pc-only-header');
-                if (mobileHeader) mobileHeader.style.display = isPC ? 'none' : 'flex';
-                if (pcHeader) pcHeader.style.display = isPC ? 'flex' : 'none';
-                updateStatusUI();
-            }
-
-            // 绑定事件
-            btnCopy.addEventListener('click', copyPickedCoord);
-            btnShare.addEventListener('click', handleShare);
-            btnLocate.addEventListener('click', locateAndSetPosition);
-            btnManualCheckIn.addEventListener('click', manualCheckIn);
-            btnReset.addEventListener('click', () => {
-                clearUserPos();
-                state.pickedCoord = null;
-                showToast('🔄 用户位置已重置', 'warning');
-            });
-            btnClearRecords.addEventListener('click', clearRecords);
-            btnSearchAddress.addEventListener('click', searchAddress);
-            addressInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    searchAddress();
-                }
-            });
-
-            cancelShareSheet.addEventListener('click', closeSocialShareSheet);
-            socialShareOverlay.addEventListener('click', (e) => {
-                if (e.target === socialShareOverlay) {
-                    closeSocialShareSheet();
-                }
-            });
-
-            document.querySelectorAll('.share-icon-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const platform = this.getAttribute('data-platform');
-                    switch (platform) {
-                        case 'qq':
-                            shareToQQ();
-                            break;
-                        case 'wechat':
-                            shareToWechat();
-                            break;
-                        case 'weibo':
-                            shareToWeibo();
-                            break;
-                        case 'link':
-                            copyShareLink();
-                            break;
-                    }
-                });
-            });
-
-            if (closeWeixinTip) {
-                closeWeixinTip.addEventListener('click', hideWeixinShareTip);
-            }
-            if (weixinShareTip) {
-                weixinShareTip.addEventListener('click', function(e) {
-                    if (e.target === weixinShareTip) {
-                        hideWeixinShareTip();
-                    }
-                });
-            }
-
-            radiusSlider.addEventListener('input', () => {
-                const val = parseInt(radiusSlider.value, 10);
-                radiusInput.value = val;
-                radiusVal.textContent = val;
-            });
-            radiusSlider.addEventListener('change', () => {
-                const val = parseInt(radiusSlider.value, 10);
-                setFenceRadius(val);
-            });
-            radiusInput.addEventListener('input', () => {
-                let val = parseInt(radiusInput.value, 10);
-                if (isNaN(val)) return;
-                if (val < 10) val = 10;
-                if (val > 20000) val = 20000;
-                radiusSlider.value = val;
-                radiusVal.textContent = val;
-            });
-            radiusInput.addEventListener('change', () => {
-                let val = parseInt(radiusInput.value, 10);
-                if (isNaN(val)) val = state.fenceRadius;
-                val = Math.min(20000, Math.max(10, val));
-                radiusInput.value = val;
-                setFenceRadius(val);
-            });
-            radiusInput.addEventListener('blur', () => {
-                let val = parseInt(radiusInput.value, 10);
-                if (isNaN(val)) val = state.fenceRadius;
-                val = Math.min(20000, Math.max(10, val));
-                radiusInput.value = val;
-                setFenceRadius(val);
-            });
-
-            function setFenceRadius(radius) {
-                const r = Math.min(20000, Math.max(10, parseInt(radius) || 10));
-                state.fenceRadius = r;
-                if (state.userLatLng) {
-                    const result = checkInside(state.userLatLng.lat, state.userLatLng.lng);
-                    state.isInside = result.inside;
-                    updateUserMarker();
-                    updateFenceLayer();
-                    updateAllUI(result.distance);
-                } else {
-                    updateFenceLayer();
-                    updateAllUI(null);
-                }
-                updateBrowserURL();
-                saveState();
-            }
-
-            function onFenceCenterInputChange() {
-                const lat = parseFloat(fenceLatInput.value);
-                const lng = parseFloat(fenceLngInput.value);
-                if (isNaN(lat) || isNaN(lng)) return;
-                if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
-                    showToast('⚠️ 经纬度范围不合法', 'warning');
-                    return;
-                }
-                setFenceCenter(lat, lng);
-            }
-
-            function setFenceCenter(lat, lng) {
-                setFenceCenterSilent(lat, lng);
-                state.pickedCoord = { lat, lng };
-                showToast('✅ 围栏中心已更新', 'success');
-            }
-            fenceLatInput.addEventListener('change', onFenceCenterInputChange);
-            fenceLngInput.addEventListener('change', onFenceCenterInputChange);
-            fenceLatInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') onFenceCenterInputChange();
-            });
-            fenceLngInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') onFenceCenterInputChange();
-            });
-
-            document.addEventListener('keydown', e => {
-                if (e.key === 'Enter' && document.activeElement === document.body) {
-                    e.preventDefault();
-                    manualCheckIn();
-                }
-                if (e.key === 'c' && e.ctrlKey && state.pickedCoord) {
-                    e.preventDefault();
-                    copyPickedCoord();
-                }
-                if (e.key === 'Escape') {
-                    closeSocialShareSheet();
-                    hideWeixinShareTip();
-                }
-            });
-
-            if (typeof TMap !== 'undefined') {
-                initMap();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {}
+        }
+
+        function updateBrowserURL() {
+            const params = new URLSearchParams();
+            params.set('lat', fmtCoord(state.fenceCenter.lat, 6));
+            params.set('lng', fmtCoord(state.fenceCenter.lng, 6));
+            params.set('radius', state.fenceRadius.toString());
+            const newURL = window.location.origin + window.location.pathname + '?' + params.toString();
+            try { window.history.replaceState({}, '', newURL); } catch (e) {}
+            updateOGTags();
+        }
+
+        function updateOGTags() {
+            const shareURL = window.location.origin + window.location.pathname + '?' +
+                new URLSearchParams({ lat: fmtCoord(state.fenceCenter.lat,6), lng: fmtCoord(state.fenceCenter.lng,6), radius: state.fenceRadius.toString() }).toString();
+            const ogTitle = `围栏坐标: ${fmtCoord(state.fenceCenter.lat,4)},${fmtCoord(state.fenceCenter.lng,4)} | 半径${state.fenceRadius}m`;
+            setMetaContent('og:url', shareURL);
+            setMetaContent('og:title', ogTitle);
+            setMetaContent('twitter:title', ogTitle);
+            setMetaContent('twitter:url', shareURL);
+            setMetaContent('itemprop', 'name', ogTitle);
+            setShareLogo(); // 确保logo始终存在
+        }
+
+        function setMetaContent(attrName, attrValue, content) {
+            let selector;
+            if (content === undefined) {
+                content = attrValue;
+                selector = `meta[property="${attrName}"], meta[name="${attrName}"]`;
             } else {
-                $('container').innerHTML =
-                    '<div style="padding:40px;text-align:center;color:#ff4d4f;">⚠️ 腾讯地图API加载失败</div>';
+                selector = `meta[${attrName}="${attrValue}"]`;
             }
+            const el = document.querySelector(selector);
+            if (el) el.setAttribute('content', content);
+        }
 
-            console.log('🔗 分享链接:', getShareURL());
-            console.log('📷 OG图片URL:', buildStaticMapURL());
-            console.log('📋 分享标题:', getShareTitle());
-            if (isWeixinBrowser) {
-                console.log('💬 检测到微信浏览器，已启用分享提示');
+        const saved = loadState();
+        const state = {
+            fenceCenter: saved.fenceCenter,
+            fenceRadius: saved.fenceRadius,
+            userLatLng: saved.userLatLng,
+            pickedCoord: null,
+            isInside: null,
+            records: saved.records,
+        };
+
+        const $ = (id) => document.getElementById(id);
+        const statusBadgeMobile = $('statusBadgeMobile');
+        const statusTextMobile = $('statusTextMobile');
+        const statusBadgePC = $('statusBadgePC');
+        const statusTextPC = $('statusTextPC');
+        const distBox = $('distBox');
+        const distVal = $('distVal');
+        const radiusVal = $('radiusVal');
+        const statusInfoBox = $('statusInfoBox');
+        const statusInfoVal = $('statusInfoVal');
+        const mapTip = $('mapTip');
+        const crosshair = $('crosshair');
+        const btnCopy = $('btnCopy');
+        const fenceLngInput = $('fenceLng');
+        const fenceLatInput = $('fenceLat');
+        const radiusSlider = $('radiusSlider');
+        const radiusInput = $('radiusInput');
+        const btnLocate = $('btnLocate');
+        const btnManualCheckIn = $('btnManualCheckIn');
+        const btnReset = $('btnReset');
+        const recordsList = $('recordsList');
+        const btnClearRecords = $('btnClearRecords');
+        const toast = $('toast');
+        const addressInput = $('addressInput');
+        const btnSearchAddress = $('btnSearchAddress');
+        const weixinShareTip = $('weixinShareTip');
+        const closeWeixinTip = $('closeWeixinTip');
+
+        let map, fenceLayer, userMarkerLayer, centerMarkerLayer;
+        let geocoder = null;
+        let toastTimer = null;
+        let copyFeedbackTimer = null;
+        let flashTimer = null;
+        const isWeixinBrowser = /micromessenger/i.test(navigator.userAgent);
+
+        function getStatusElements() {
+            const isPC = window.matchMedia('(min-width: 768px)').matches;
+            return { badge: isPC ? statusBadgePC : statusBadgeMobile, text: isPC ? statusTextPC : statusTextMobile };
+        }
+
+        function calcDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371000;
+            const toRad = deg => deg * Math.PI / 180;
+            const dLat = toRad(lat2 - lat1);
+            const dLng = toRad(lng2 - lng1);
+            const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+
+        function checkInside(lat, lng) {
+            const dist = calcDistance(lat, lng, state.fenceCenter.lat, state.fenceCenter.lng);
+            return { inside: dist <= state.fenceRadius, distance: dist };
+        }
+
+        function fmtDist(m) {
+            if (m === null || m === undefined) return '--';
+            if (m < 1) return '<1';
+            if (m >= 1000) return (m / 1000).toFixed(2) + ' km';
+            return Math.round(m).toString();
+        }
+
+        function fmtCoord(coord, digits = 6) {
+            if (coord === null || coord === undefined) return '--';
+            return Number(coord).toFixed(digits);
+        }
+
+        function timeStr() {
+            const d = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+        }
+
+        function showToast(msg, type = 'success') {
+            if (toastTimer) clearTimeout(toastTimer);
+            toast.className = 'toast ' + type;
+            toast.textContent = msg;
+            void toast.offsetWidth;
+            toast.classList.add('show');
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        function updateStatusUI() {
+            const { badge, text } = getStatusElements();
+            [statusBadgeMobile, statusBadgePC].forEach(b => { if(b) b.classList.remove('inside', 'outside', 'unknown'); });
+            distBox.classList.remove('danger', 'success', 'warning');
+            statusInfoBox.classList.remove('danger', 'success', 'warning');
+            if (state.isInside === true) {
+                if(badge) badge.classList.add('inside');
+                if(text) text.textContent = '在围栏内';
+                distBox.classList.add('success');
+                statusInfoBox.classList.add('success');
+                statusInfoVal.textContent = '✅ 范围内';
+                statusInfoVal.style.color = '#00b578';
+            } else if (state.isInside === false) {
+                if(badge) badge.classList.add('outside');
+                if(text) text.textContent = '在围栏外';
+                distBox.classList.add('danger');
+                statusInfoBox.classList.add('danger');
+                statusInfoVal.textContent = '❌ 范围外';
+                statusInfoVal.style.color = '#ff4d4f';
+            } else {
+                if(badge) badge.classList.add('unknown');
+                if(text) text.textContent = '等待定位';
+                statusInfoBox.classList.add('warning');
+                statusInfoVal.textContent = '--';
+                statusInfoVal.style.color = '#d48806';
             }
-        })();
-    </script>
+        }
+
+        function updateDistanceUI(dist) {
+            distVal.textContent = fmtDist(dist);
+            radiusVal.textContent = state.fenceRadius;
+            radiusSlider.value = state.fenceRadius;
+            radiusInput.value = state.fenceRadius;
+        }
+
+        function updateFenceInputs() {
+            fenceLatInput.value = fmtCoord(state.fenceCenter.lat);
+            fenceLngInput.value = fmtCoord(state.fenceCenter.lng);
+        }
+
+        function renderRecords() {
+            if (!recordsList) return;
+            if (state.records.length === 0) {
+                recordsList.innerHTML = '<li style="color:#aaa;">暂无记录</li>';
+                return;
+            }
+            let html = '';
+            state.records.forEach(r => {
+                const cls = r.success ? 'record-success' : 'record-fail';
+                const icon = r.success ? '✅' : '❌';
+                html += `<li><span>${icon} ${r.time}</span><span class="${cls}">${fmtDist(r.dist)}m</span></li>`;
+            });
+            recordsList.innerHTML = html;
+        }
+
+        function clearRecords() {
+            state.records = [];
+            renderRecords();
+            saveState();
+            showToast('📋 打卡记录已清空', 'info');
+        }
+
+        function updateAllUI(dist) {
+            updateStatusUI();
+            updateDistanceUI(dist);
+            updateFenceInputs();
+            renderRecords();
+        }
+
+        const FENCE_STYLES = {
+            default: new TMap.CircleStyle({ color: 'rgba(77,148,255,0.18)', showBorder: true, borderColor: 'rgba(77,148,255,0.8)', width: 2 }),
+            inside: new TMap.CircleStyle({ color: 'rgba(0,181,120,0.18)', showBorder: true, borderColor: 'rgba(0,181,120,0.8)', width: 2.5 }),
+            outside: new TMap.CircleStyle({ color: 'rgba(255,77,79,0.15)', showBorder: true, borderColor: 'rgba(255,77,79,0.8)', width: 2.5 }),
+        };
+
+        function updateFenceLayer() {
+            if (!fenceLayer) return;
+            let styleId = 'default';
+            if (state.isInside === true) styleId = 'inside';
+            else if (state.isInside === false) styleId = 'outside';
+            fenceLayer.setGeometries([{ styleId, center: new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng), radius: state.fenceRadius }]);
+        }
+
+        function updateCenterMarker() {
+            if (!centerMarkerLayer) return;
+            centerMarkerLayer.setGeometries([{ styleId: 'center', position: new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng), draggable: true }]);
+        }
+
+        function createDotIcon(color, size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size; canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            const half = size/2;
+            const grad = ctx.createRadialGradient(half, half, size*0.22, half, half, half);
+            grad.addColorStop(0, color); grad.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad; ctx.fillRect(0,0,size,size);
+            ctx.beginPath(); ctx.arc(half, half, size*0.3, 0, Math.PI*2); ctx.fillStyle = color; ctx.fill();
+            ctx.strokeStyle = 'rgba(255,255,255,0.6)'; ctx.lineWidth = 2.5; ctx.stroke();
+            ctx.beginPath(); ctx.arc(half, half, size*0.1, 0, Math.PI*2); ctx.fillStyle = '#fff'; ctx.fill();
+            return canvas.toDataURL();
+        }
+
+        function createCenterIcon() {
+            const size = 30; const canvas = document.createElement('canvas'); canvas.width = size; canvas.height = size;
+            const ctx = canvas.getContext('2d'); const cx = size/2, cy = size/2;
+            ctx.beginPath(); ctx.arc(cx, cy+1, 12, 0, Math.PI*2); ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fill();
+            ctx.beginPath(); ctx.arc(cx, cy, 11, 0, Math.PI*2); ctx.fillStyle = '#4d94ff'; ctx.fill();
+            ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.lineWidth = 2.5; ctx.stroke();
+            ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI*2); ctx.fillStyle = '#fff'; ctx.fill();
+            ctx.fillStyle = '#4d94ff'; ctx.fillRect(cx-1, cy-4, 2, 8); ctx.fillRect(cx-4, cy-1, 8, 2);
+            return canvas.toDataURL();
+        }
+
+        function updateUserMarker() {
+            if (!userMarkerLayer) return;
+            const colorMap = { true: '#00b578', false: '#ff4d4f', null: '#faad14' };
+            const color = colorMap[String(state.isInside)];
+            const icon = createDotIcon(color, 26);
+            if (state.userLatLng) {
+                userMarkerLayer.setStyles({ 'user': new TMap.MarkerStyle({ width: 26, height: 26, anchor: { x: 13, y: 13 }, src: icon }) });
+                userMarkerLayer.setGeometries([{ styleId: 'user', position: new TMap.LatLng(state.userLatLng.lat, state.userLatLng.lng) }]);
+            } else { userMarkerLayer.setGeometries([]); }
+        }
+
+        function setFenceCenterSilent(lat, lng) {
+            state.fenceCenter = { lat, lng };
+            updateCenterMarker(); updateFenceLayer();
+            if (state.userLatLng) {
+                const result = checkInside(state.userLatLng.lat, state.userLatLng.lng);
+                state.isInside = result.inside; updateUserMarker(); updateFenceLayer(); updateDistanceUI(result.distance);
+            } else { updateDistanceUI(null); }
+            updateFenceInputs(); updateBrowserURL(); saveState();
+        }
+
+        function setUserPos(lat, lng) {
+            state.userLatLng = { lat, lng };
+            const result = checkInside(lat, lng);
+            state.isInside = result.inside;
+            updateUserMarker(); updateFenceLayer(); updateAllUI(result.distance);
+            const midLat = (lat + state.fenceCenter.lat)/2, midLng = (lng + state.fenceCenter.lng)/2;
+            const d = calcDistance(lat, lng, state.fenceCenter.lat, state.fenceCenter.lng);
+            let zoom = 15; if (d>1000) zoom=13; if (d>3000) zoom=11; if (d>8000) zoom=9;
+            map.setCenter(new TMap.LatLng(midLat, midLng)); map.setZoom(zoom);
+            updateBrowserURL(); saveState();
+        }
+
+        function clearUserPos() {
+            state.userLatLng = null; state.isInside = null;
+            updateUserMarker(); updateFenceLayer(); updateAllUI(null);
+            map.setCenter(new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng)); map.setZoom(15);
+            mapTip.classList.remove('hidden');
+            updateBrowserURL(); saveState();
+        }
+
+        function pickCoordinate(lat, lng) {
+            state.pickedCoord = { lat, lng };
+            if (flashTimer) clearTimeout(flashTimer);
+            crosshair.classList.add('flash'); flashTimer = setTimeout(() => crosshair.classList.remove('flash'), 280);
+            if (map.getZoom() < 15) map.setZoom(15);
+            map.setCenter(new TMap.LatLng(lat, lng));
+            setFenceCenterSilent(lat, lng);
+        }
+
+        function performCheckIn(lat, lng) {
+            const result = checkInside(lat, lng);
+            state.isInside = result.inside;
+            state.records.unshift({ time: timeStr(), success: result.inside, dist: result.distance });
+            if (state.records.length > 20) state.records.pop();
+            updateAllUI(result.distance);
+            showToast(result.inside ? '🎉 打卡成功！在围栏内' : `❌ 打卡失败！超出 ${fmtDist(result.distance - state.fenceRadius)} 米`, result.inside ? 'success' : 'fail');
+            saveState();
+        }
+
+        function manualCheckIn() {
+            if (!state.userLatLng) { showToast('⚠️ 请先获取GPS位置或点击地图设置用户位置', 'warning'); return; }
+            performCheckIn(state.userLatLng.lat, state.userLatLng.lng);
+        }
+
+        function locateAndSetPosition() {
+            if (!navigator.geolocation) { showToast('⚠️ 浏览器不支持GPS', 'warning'); return; }
+            btnLocate.disabled = true; btnLocate.textContent = '⏳ 定位中';
+            navigator.geolocation.getCurrentPosition(
+                pos => {
+                    const lat = pos.coords.latitude, lng = pos.coords.longitude;
+                    setUserPos(lat, lng); state.pickedCoord = { lat, lng };
+                    mapTip.classList.add('hidden');
+                    btnLocate.disabled = false; btnLocate.textContent = '📡 获取位置';
+                    showToast('📍 定位成功', 'success');
+                },
+                err => {
+                    let msg = '❌ 定位失败';
+                    if (err.code === 1) msg = '❌ 定位权限被拒绝';
+                    else if (err.code === 2) msg = '❌ 无法获取位置信息';
+                    else if (err.code === 3) msg = '⏰ 定位超时';
+                    showToast(msg, 'fail');
+                    btnLocate.disabled = false; btnLocate.textContent = '📡 获取位置';
+                }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }
+            );
+        }
+
+        function geocodeAddressFallback(address, callback) {
+            const url = `https://apis.map.qq.com/ws/geocoder/v1/?address=${encodeURIComponent(address)}&key=${API_KEY}&output=jsonp&callback=handleGeocode`;
+            const script = document.createElement('script');
+            window.handleGeocode = function(data) {
+                if (data.status === 0 && data.result && data.result.location) {
+                    const loc = data.result.location; callback(null, { lat: loc.lat, lng: loc.lng });
+                } else { callback(new Error(data.message || '未找到地址')); }
+                document.head.removeChild(script); delete window.handleGeocode;
+            };
+            script.src = url; script.onerror = () => { callback(new Error('网络请求失败')); document.head.removeChild(script); delete window.handleGeocode; };
+            document.head.appendChild(script);
+        }
+
+        function searchAddress() {
+            const address = addressInput.value.trim();
+            if (!address) { showToast('⚠️ 请输入地址', 'warning'); return; }
+            btnSearchAddress.disabled = true; btnSearchAddress.textContent = '⏳ 搜索中';
+            const doSearch = (callback) => {
+                if (geocoder) {
+                    geocoder.getLocation({ address }).then(result => {
+                        if (result && result.location) callback(null, { lat: result.location.lat, lng: result.location.lng });
+                        else callback(new Error('未找到该地址'));
+                    }).catch(err => callback(err));
+                } else { geocodeAddressFallback(address, callback); }
+            };
+            doSearch((err, location) => {
+                btnSearchAddress.disabled = false; btnSearchAddress.textContent = '🔍 搜索';
+                if (err) { showToast('❌ ' + (err.message || '搜索失败'), 'fail'); return; }
+                pickCoordinate(location.lat, location.lng);
+                mapTip.classList.add('hidden');
+                showToast('📍 地址定位成功', 'success');
+            });
+        }
+
+        function copyPickedCoord() {
+            if (!state.pickedCoord) { showToast('⚠️ 请先获取坐标', 'warning'); return; }
+            const text = `${fmtCoord(state.pickedCoord.lng)},${fmtCoord(state.pickedCoord.lat)}`;
+            doCopyText(text, () => {
+                btnCopy.classList.add('copied'); btnCopy.innerHTML = '✅ 已复制';
+                showToast('📋 坐标已复制', 'success');
+                if (copyFeedbackTimer) clearTimeout(copyFeedbackTimer);
+                copyFeedbackTimer = setTimeout(() => { btnCopy.classList.remove('copied'); btnCopy.innerHTML = '📋 复制坐标'; }, 2000);
+            });
+        }
+
+        function doCopyText(text, onSuccess) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text, onSuccess));
+            } else { fallbackCopy(text, onSuccess); }
+        }
+
+        function fallbackCopy(text, onSuccess) {
+            const textarea = document.createElement('textarea'); textarea.value = text;
+            textarea.style.position = 'fixed'; textarea.style.left = '-9999px'; document.body.appendChild(textarea);
+            textarea.focus(); textarea.select();
+            try { document.execCommand('copy'); if (onSuccess) onSuccess(); } catch (e) { showToast('⚠️ 复制失败', 'warning'); }
+            document.body.removeChild(textarea);
+        }
+
+        function bindCrosshairFollow() {
+            const container = document.getElementById('container');
+            if (!container || !crosshair) return;
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                crosshair.style.left = (e.clientX - rect.left) + 'px';
+                crosshair.style.top = (e.clientY - rect.top) + 'px';
+                crosshair.classList.add('visible');
+            });
+            container.addEventListener('mouseleave', () => crosshair.classList.remove('visible'));
+            container.addEventListener('touchstart', () => crosshair.classList.remove('visible'), { passive: true });
+        }
+
+        function showWeixinShareTip() {
+            if (isWeixinBrowser && weixinShareTip) {
+                setTimeout(() => weixinShareTip.classList.add('show'), 1500);
+                setTimeout(() => weixinShareTip.classList.remove('show'), 10000);
+            }
+        }
+
+        function hideWeixinShareTip() { if (weixinShareTip) weixinShareTip.classList.remove('show'); }
+
+        function initMap() {
+            const center = new TMap.LatLng(state.fenceCenter.lat, state.fenceCenter.lng);
+            map = new TMap.Map('container', { zoom: 15, center, viewMode: '2D', mapStyleId: 'style1' });
+            try { if (TMap.service && TMap.service.Geocoder) geocoder = new TMap.service.Geocoder(); } catch(e) {}
+            fenceLayer = new TMap.MultiCircle({ map, styles: FENCE_STYLES, geometries: [{ styleId: 'default', center, radius: state.fenceRadius }] });
+            centerMarkerLayer = new TMap.MultiMarker({ map, styles: { 'center': new TMap.MarkerStyle({ width: 30, height: 30, anchor: { x: 15, y: 15 }, src: createCenterIcon() }) }, geometries: [{ styleId: 'center', position: center, draggable: true }] });
+            centerMarkerLayer.on('dragend', (evt) => {
+                if (evt.geometry && evt.geometry.position) {
+                    const lat = evt.geometry.position.getLat(), lng = evt.geometry.position.getLng();
+                    setFenceCenterSilent(lat, lng); state.pickedCoord = { lat, lng };
+                    showToast('📍 围栏中心已移动', 'info');
+                }
+            });
+            userMarkerLayer = new TMap.MultiMarker({ map, styles: { 'user': new TMap.MarkerStyle({ width: 26, height: 26, anchor: { x: 13, y: 13 }, src: createDotIcon('#faad14', 26) }) }, geometries: [] });
+            if (state.userLatLng) {
+                const { lat, lng } = state.userLatLng; state.pickedCoord = { lat, lng };
+                const result = checkInside(lat, lng); state.isInside = result.inside;
+                updateUserMarker(); updateFenceLayer(); updateDistanceUI(result.distance); updateStatusUI(); renderRecords();
+            }
+            const urlParams = parseURLParams();
+            if (urlParams.lat && urlParams.lng) {
+                map.setCenter(new TMap.LatLng(urlParams.lat, urlParams.lng));
+                map.setZoom(urlParams.radius ? (urlParams.radius < 500 ? 15 : (urlParams.radius < 2000 ? 14 : 12)) : 15);
+                mapTip.classList.add('hidden'); state.pickedCoord = { lat: urlParams.lat, lng: urlParams.lng };
+            }
+            map.on('click', (evt) => { if(evt.latLng) { pickCoordinate(evt.latLng.getLat(), evt.latLng.getLng()); mapTip.classList.add('hidden'); } });
+            map.on('longpress', (evt) => { if(evt.latLng) { pickCoordinate(evt.latLng.getLat(), evt.latLng.getLng()); mapTip.classList.add('hidden'); } });
+            map.on('rightclick', (evt) => { if(evt.latLng) { pickCoordinate(evt.latLng.getLat(), evt.latLng.getLng()); mapTip.classList.add('hidden'); } });
+            updateAllUI(null); updateFenceInputs(); updateBrowserURL(); setShareLogo();
+            bindCrosshairFollow(); handleResponsiveHeader();
+            window.addEventListener('resize', handleResponsiveHeader);
+            showWeixinShareTip();
+        }
+
+        function handleResponsiveHeader() {
+            const isPC = window.matchMedia('(min-width: 768px)').matches;
+            const mh = document.querySelector('.mobile-only-header'), ph = document.querySelector('.pc-only-header');
+            if(mh) mh.style.display = isPC ? 'none' : 'flex';
+            if(ph) ph.style.display = isPC ? 'flex' : 'none';
+            updateStatusUI();
+        }
+
+        btnCopy.addEventListener('click', copyPickedCoord);
+        btnLocate.addEventListener('click', locateAndSetPosition);
+        btnManualCheckIn.addEventListener('click', manualCheckIn);
+        btnReset.addEventListener('click', () => { clearUserPos(); state.pickedCoord = null; showToast('🔄 用户位置已重置', 'warning'); });
+        btnClearRecords.addEventListener('click', clearRecords);
+        btnSearchAddress.addEventListener('click', searchAddress);
+        addressInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); searchAddress(); } });
+        if(closeWeixinTip) closeWeixinTip.addEventListener('click', hideWeixinShareTip);
+        if(weixinShareTip) weixinShareTip.addEventListener('click', (e) => { if(e.target === weixinShareTip) hideWeixinShareTip(); });
+
+        radiusSlider.addEventListener('input', () => { const v = parseInt(radiusSlider.value,10); radiusInput.value = v; radiusVal.textContent = v; });
+        radiusSlider.addEventListener('change', () => setFenceRadius(parseInt(radiusSlider.value,10)));
+        radiusInput.addEventListener('input', () => { let v = parseInt(radiusInput.value,10); if(isNaN(v)) return; v = Math.min(20000, Math.max(10, v)); radiusSlider.value = v; radiusVal.textContent = v; });
+        radiusInput.addEventListener('change', () => { let v = parseInt(radiusInput.value,10); if(isNaN(v)) v = state.fenceRadius; v = Math.min(20000, Math.max(10, v)); radiusInput.value = v; setFenceRadius(v); });
+        radiusInput.addEventListener('blur', () => { let v = parseInt(radiusInput.value,10); if(isNaN(v)) v = state.fenceRadius; v = Math.min(20000, Math.max(10, v)); radiusInput.value = v; setFenceRadius(v); });
+
+        function setFenceRadius(r) {
+            r = Math.min(20000, Math.max(10, parseInt(r)||10)); state.fenceRadius = r;
+            if (state.userLatLng) { const res = checkInside(state.userLatLng.lat, state.userLatLng.lng); state.isInside = res.inside; updateUserMarker(); updateFenceLayer(); updateAllUI(res.distance); }
+            else { updateFenceLayer(); updateAllUI(null); }
+            updateBrowserURL(); saveState();
+        }
+
+        function onFenceCenterInputChange() {
+            const lat = parseFloat(fenceLatInput.value), lng = parseFloat(fenceLngInput.value);
+            if (isNaN(lat) || isNaN(lng)) return;
+            if (lat<-90||lat>90||lng<-180||lng>180) { showToast('⚠️ 经纬度范围不合法', 'warning'); return; }
+            setFenceCenterSilent(lat, lng); state.pickedCoord = { lat, lng }; showToast('✅ 围栏中心已更新', 'success');
+        }
+        fenceLatInput.addEventListener('change', onFenceCenterInputChange);
+        fenceLngInput.addEventListener('change', onFenceCenterInputChange);
+        fenceLatInput.addEventListener('keydown', (e) => { if(e.key==='Enter') onFenceCenterInputChange(); });
+        fenceLngInput.addEventListener('keydown', (e) => { if(e.key==='Enter') onFenceCenterInputChange(); });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && document.activeElement === document.body) { e.preventDefault(); manualCheckIn(); }
+            if (e.key === 'c' && e.ctrlKey && state.pickedCoord) { e.preventDefault(); copyPickedCoord(); }
+            if (e.key === 'Escape') { hideWeixinShareTip(); }
+        });
+
+        if (typeof TMap !== 'undefined') { initMap(); } else { $('container').innerHTML = '<div style="padding:40px;text-align:center;color:#ff4d4f;">⚠️ 腾讯地图API加载失败</div>'; }
+        console.log('分享logo已设置为：', window.location.origin + '/static/logo/map.svg');
+    })();
+</script>
 </body>
 </html>
